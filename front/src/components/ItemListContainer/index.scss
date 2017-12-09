@@ -1,0 +1,14 @@
+.itemL_pagination {
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  padding: 16px;
+  .itemL_paginationPrev {
+    position: absolute;
+    left: 20px;
+  }
+  .itemL_paginationNext {
+    position: absolute;
+    right: 20px;
+  }
+}

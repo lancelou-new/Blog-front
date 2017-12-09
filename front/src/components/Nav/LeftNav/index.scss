@@ -1,0 +1,55 @@
+.left_navContainer {
+  color: #fff;
+  height: 100%;
+  padding-top: 40px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  padding-bottom: 10px;
+
+  .left_icon {
+    text-align: center;
+    img {
+      width: 108px;
+      height: 108px;
+      // border: 1px solid #eeeeee;
+    }
+  }
+
+  .left_menuItem {
+    list-style: none;
+    padding: 8px 0;
+    font-size: 1rem;
+    a {
+      width: 100%;
+      color: #fff;
+      padding-left: 36px;
+      display: inline-block;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+
+    i {
+      font-size: 1.3rem;
+      margin-right: 18px;
+    }
+  }
+
+  .left_mediaMenu {
+    padding-left: 10px;
+    a {
+      width: 30px;
+      padding: 0 20px;
+    }
+  }
+
+  h2 {
+    display: block;
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 400;
+  }
+  ul {
+    padding-left: 0;
+  }
+}
