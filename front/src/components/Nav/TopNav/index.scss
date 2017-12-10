@@ -1,0 +1,83 @@
+.leftNav_container {
+  display: none;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-image: url('../../../../static/sidebar-temp.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  h1 {
+    font-size: 1.2rem;
+    line-height: 50px;
+    text-align: center;
+    a {
+      color: #fff;
+    }
+  }
+  
+  & > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0;
+    img {
+      width: 50px;
+      height: 50px;
+      right: 0;
+    }
+  }
+
+  .leftNav_btnBar {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    outline: 0;
+    i, i::before, i::after{
+      background-color: #ccc;
+      height: 1px;
+      left: 14px;
+      position: absolute;
+      transition: all .2s cubic-bezier(.4,.01,.165,.99) .3s;
+      width: 22px;
+    }
+    i {
+      position: absolute;
+      top: 50%;
+      margin-top: -1px;
+    }
+    i::before, i::after {
+      content: '';
+      left: 0;
+      transform-origin: right;
+    }
+    i::before {
+      top: -8px;
+    }
+    i::after {
+      bottom: -8px;
+    }
+  }  
+}
+
+@media screen and (max-width: 768px){
+  .leftNav_container {
+    display: block;
+  }
+  :global(.side) {
+    .leftNav_btnBar {
+      i {
+        height: 0;
+      }
+      i::before {
+        transform: rotate(-45deg);
+      }
+      i::after {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}

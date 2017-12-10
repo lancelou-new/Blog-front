@@ -790,18 +790,19 @@ ol, ul {
 }
 
 .page_pagination {
-  height: 30px;
-  line-height: 30px;
   position: relative;
   padding: 16px;
+  height: 30px;
   border-bottom: 1px solid #ddd;
   .page_paginationPrev {
     position: absolute;
     left: 20px;
+    line-height: 30px;
   }
   .page_paginationNext {
     position: absolute;
     right: 20px;
+    line-height: 30px;
   }
 }
 
@@ -814,7 +815,7 @@ h1.intro {
 
 @media screen and (max-width: 768px){
   .page_pagination {
-    height: 60px;
+    height: auto;
     .page_paginationPrev {
       display: block;
       position: relative;

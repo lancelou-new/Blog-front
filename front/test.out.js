@@ -89,7 +89,7 @@ module.exports = require("react-redux");
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_redux__);
@@ -97,7 +97,7 @@ module.exports = require("react-redux");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__action_requestParamsFactory__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes__ = __webpack_require__(7);
 /* eslint react/prop-types: 0 */
 /**
  * PreLoadLinkWithRouteConf
@@ -167,11 +167,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PreLoadLinkWithRouteConf, 'PreLoadLinkWithRouteConf', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/PreloadLink/preLoadLinkWithRouteConf.jsx');
+  __REACT_HOT_LOADER__.register(PreLoadLinkWithRouteConf, 'PreLoadLinkWithRouteConf', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/PreloadLink/preLoadLinkWithRouteConf.jsx');
 
-  __REACT_HOT_LOADER__.register(PreLoadLinkWithRouteConfWithRedux, 'PreLoadLinkWithRouteConfWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/PreloadLink/preLoadLinkWithRouteConf.jsx');
+  __REACT_HOT_LOADER__.register(PreLoadLinkWithRouteConfWithRedux, 'PreLoadLinkWithRouteConfWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/PreloadLink/preLoadLinkWithRouteConf.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/PreloadLink/preLoadLinkWithRouteConf.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/PreloadLink/preLoadLinkWithRouteConf.jsx');
 }();
 
 ;
@@ -184,12 +184,44 @@ module.exports = require("react-helmet");
 
 /***/ }),
 /* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_eventemitter2__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_eventemitter2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_eventemitter2__);
+// https://github.com/asyncly/EventEmitter2
+
+
+var EventEmitter2 = __WEBPACK_IMPORTED_MODULE_0_eventemitter2___default.a.EventEmitter2;
+
+var server = new EventEmitter2({});
+
+var _default = server;
+/* harmony default export */ __webpack_exports__["a"] = (_default);
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(EventEmitter2, 'EventEmitter2', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/utils/eventCenter.js');
+
+  __REACT_HOT_LOADER__.register(server, 'server', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/utils/eventCenter.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/utils/eventCenter.js');
+}();
+
+;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router");
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -267,45 +299,13 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(config, 'config', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/index.jsx');
+  __REACT_HOT_LOADER__.register(config, 'config', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mustSSRLoad, 'mustSSRLoad', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/index.jsx');
+  __REACT_HOT_LOADER__.register(mustSSRLoad, 'mustSSRLoad', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/index.jsx');
 
-  __REACT_HOT_LOADER__.register(routerConfig, 'routerConfig', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/index.jsx');
+  __REACT_HOT_LOADER__.register(routerConfig, 'routerConfig', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/index.jsx');
-}();
-
-;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_eventemitter2__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_eventemitter2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_eventemitter2__);
-// https://github.com/asyncly/EventEmitter2
-
-
-var EventEmitter2 = __WEBPACK_IMPORTED_MODULE_0_eventemitter2___default.a.EventEmitter2;
-
-var server = new EventEmitter2({});
-
-var _default = server;
-/* harmony default export */ __webpack_exports__["a"] = (_default);
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(EventEmitter2, 'EventEmitter2', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/utils/eventCenter.js');
-
-  __REACT_HOT_LOADER__.register(server, 'server', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/utils/eventCenter.js');
-
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/utils/eventCenter.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/index.jsx');
 }();
 
 ;
@@ -326,13 +326,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_redux__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_helmet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_eventCenter__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_eventCenter__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__page404__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pagination__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__PreloadLink_preLoadLinkWithRouteConf__ = __webpack_require__(3);
@@ -529,17 +529,17 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Page, 'Page', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/index.jsx');
+  __REACT_HOT_LOADER__.register(Page, 'Page', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PageArticle, 'PageArticle', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/index.jsx');
+  __REACT_HOT_LOADER__.register(PageArticle, 'PageArticle', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToPageProps, 'mapStateToPageProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToPageProps, 'mapStateToPageProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PageWithRedux, 'PageWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/index.jsx');
+  __REACT_HOT_LOADER__.register(PageWithRedux, 'PageWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/index.jsx');
 
-  __REACT_HOT_LOADER__.register(PageWithReduxWithRoute, 'PageWithReduxWithRoute', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/index.jsx');
+  __REACT_HOT_LOADER__.register(PageWithReduxWithRoute, 'PageWithReduxWithRoute', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/index.jsx');
 }();
 
 ;
@@ -558,7 +558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_redux__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_helmet__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_helmet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_helmet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_eventCenter__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_eventCenter__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Item__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pagination__ = __webpack_require__(49);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -673,13 +673,13 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(ItemListContainer, 'ItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/ItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(ItemListContainer, 'ItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/ItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToItemListProps, 'mapStateToItemListProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/ItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToItemListProps, 'mapStateToItemListProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/ItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(ItemListContainerWithRedux, 'ItemListContainerWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/ItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(ItemListContainerWithRedux, 'ItemListContainerWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/ItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/ItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/ItemListContainer/index.jsx');
 }();
 
 ;
@@ -1005,7 +1005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames_bind___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames_bind__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_helmet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_eventCenter__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_eventCenter__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__index_scss__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__index_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__PreloadLink_preLoadLinkWithRouteConf__ = __webpack_require__(3);
@@ -1167,17 +1167,17 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(cx, 'cx', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Achieve/index.jsx');
+  __REACT_HOT_LOADER__.register(cx, 'cx', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Achieve/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Achieve, 'Achieve', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Achieve/index.jsx');
+  __REACT_HOT_LOADER__.register(Achieve, 'Achieve', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Achieve/index.jsx');
 
-  __REACT_HOT_LOADER__.register(AchieveItem, 'AchieveItem', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Achieve/index.jsx');
+  __REACT_HOT_LOADER__.register(AchieveItem, 'AchieveItem', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Achieve/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToAchieveProps, 'mapStateToAchieveProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Achieve/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToAchieveProps, 'mapStateToAchieveProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Achieve/index.jsx');
 
-  __REACT_HOT_LOADER__.register(AchieveWithRedux, 'AchieveWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Achieve/index.jsx');
+  __REACT_HOT_LOADER__.register(AchieveWithRedux, 'AchieveWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Achieve/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Achieve/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Achieve/index.jsx');
 }();
 
 ;
@@ -1322,23 +1322,23 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(generateFetchPageParams, 'generateFetchPageParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateFetchPageParams, 'generateFetchPageParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(generateFetchItemsParams, 'generateFetchItemsParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateFetchItemsParams, 'generateFetchItemsParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(generateFetchTagsParams, 'generateFetchTagsParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateFetchTagsParams, 'generateFetchTagsParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(generateFetchTagPageParams, 'generateFetchTagPageParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateFetchTagPageParams, 'generateFetchTagPageParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(generateFetchBlogsParams, 'generateFetchBlogsParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateFetchBlogsParams, 'generateFetchBlogsParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(generateFetchAchieveParams, 'generateFetchAchieveParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateFetchAchieveParams, 'generateFetchAchieveParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(PathToParamsGeneratorMap, 'PathToParamsGeneratorMap', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(PathToParamsGeneratorMap, 'PathToParamsGeneratorMap', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(generateParams, 'generateParams', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(generateParams, 'generateParams', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/requestParamsFactory.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/requestParamsFactory.js');
 }();
 
 ;
@@ -1438,13 +1438,13 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Tag, 'Tag', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Tags/index.jsx');
+  __REACT_HOT_LOADER__.register(Tag, 'Tag', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Tags/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToTagProps, 'mapStateToTagProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Tags/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToTagProps, 'mapStateToTagProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Tags/index.jsx');
 
-  __REACT_HOT_LOADER__.register(TagWithRedux, 'TagWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Tags/index.jsx');
+  __REACT_HOT_LOADER__.register(TagWithRedux, 'TagWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Tags/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Tags/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Tags/index.jsx');
 }();
 
 ;
@@ -1457,7 +1457,7 @@ var _temp = function () {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
@@ -1535,15 +1535,15 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(HeaderItemListContainer, 'HeaderItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/HeaderItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(HeaderItemListContainer, 'HeaderItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/HeaderItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToHeaderItemListContainerProps, 'mapStateToHeaderItemListContainerProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/HeaderItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToHeaderItemListContainerProps, 'mapStateToHeaderItemListContainerProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/HeaderItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(HeaderItemListContainerWithRedux, 'HeaderItemListContainerWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/HeaderItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(HeaderItemListContainerWithRedux, 'HeaderItemListContainerWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/HeaderItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(HeaderItemListContainerWithRouter, 'HeaderItemListContainerWithRouter', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/HeaderItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(HeaderItemListContainerWithRouter, 'HeaderItemListContainerWithRouter', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/HeaderItemListContainer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/HeaderItemListContainer/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/HeaderItemListContainer/index.jsx');
 }();
 
 ;
@@ -1575,8 +1575,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_router_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_app__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes_index__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__routes_index__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__action_requestParamsFactory__ = __webpack_require__(18);
 /* eslint react/jsx-filename-extension: 0 */
 /**
@@ -1726,11 +1726,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(createStoreAndLoadData, 'createStoreAndLoadData', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/server-entry.js');
+  __REACT_HOT_LOADER__.register(createStoreAndLoadData, 'createStoreAndLoadData', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/server-entry.js');
 
-  __REACT_HOT_LOADER__.register(serverEntryMiddlewareCreator, 'serverEntryMiddlewareCreator', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/server-entry.js');
+  __REACT_HOT_LOADER__.register(serverEntryMiddlewareCreator, 'serverEntryMiddlewareCreator', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/server-entry.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/server-entry.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/server-entry.js');
 }();
 
 ;
@@ -5419,16 +5419,17 @@ module.exports = require("stream");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_redux__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes_index__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes_index__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Nav_LeftNav__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Footer__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__index_scss__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__index_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_eventCenter__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__styles_global_scss__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__styles_global_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__styles_global_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_highlight_scss__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_highlight_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__styles_highlight_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Nav_TopNav__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Footer__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__index_scss__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__index_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_eventCenter__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_global_scss__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_global_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__styles_global_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__styles_highlight_scss__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__styles_highlight_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__styles_highlight_scss__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /* eslint react/prop-types: 0 */
@@ -5443,6 +5444,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * 现在我们的问题是: 这需要是个高阶组件还是仅仅是个组件即可
  * 如果感觉不到基础组件的痛苦，那我们就用基础组件试试
  */
+
 
 
 
@@ -5474,12 +5476,33 @@ var App = function App(_ref) {
 
   var mainContainer = null;
 
-  __WEBPACK_IMPORTED_MODULE_7__utils_eventCenter__["a" /* default */].on('backToTop', function () {
+  var emitMobileSlide = function emitMobileSlide() {
+    __WEBPACK_IMPORTED_MODULE_8__utils_eventCenter__["a" /* default */].emit('mobileSlide');
+  };
+
+  // 组件重渲染，回到顶部事件
+  __WEBPACK_IMPORTED_MODULE_8__utils_eventCenter__["a" /* default */].on('backToTop', function () {
     if (!mainContainer) {
       return;
     }
-    var firstChild = mainContainer.firstElementChild;
-    firstChild && firstChild.scrollIntoView && firstChild.scrollIntoView();
+    mainContainer.scrollTo(0, 0);
+  });
+
+  // 移动端slide时间触发，双向
+  __WEBPACK_IMPORTED_MODULE_8__utils_eventCenter__["a" /* default */].on('mobileSlide', function () {
+    var body = document.body;
+    var bodyClassName = body.className;
+    console.log(bodyClassName);
+    if (bodyClassName.indexOf('side') >= 0) {
+      bodyClassName = bodyClassName.replace(/(\s)?side(\s)?/, function (arg1, arg2, arg3) {
+        return arg2 && arg3 ? ' ' : '';
+      });
+    } else {
+      bodyClassName += ' side';
+      __WEBPACK_IMPORTED_MODULE_8__utils_eventCenter__["a" /* default */].emit('backToTop');
+    }
+    console.log(bodyClassName);
+    body.className = bodyClassName;
   });
 
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -5490,21 +5513,23 @@ var App = function App(_ref) {
       { location: serverRouteConf && serverRouteConf.url },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: __WEBPACK_IMPORTED_MODULE_6__index_scss___default.a.main_container },
+        { className: __WEBPACK_IMPORTED_MODULE_7__index_scss___default.a.main_container },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: __WEBPACK_IMPORTED_MODULE_6__index_scss___default.a.main_left },
+          { className: __WEBPACK_IMPORTED_MODULE_7__index_scss___default.a.main_left },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Nav_LeftNav__["a" /* default */], null)
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: __WEBPACK_IMPORTED_MODULE_6__index_scss___default.a.main_right, ref: function ref(ele) {
+          { className: __WEBPACK_IMPORTED_MODULE_7__index_scss___default.a.main_right, ref: function ref(ele) {
               mainContainer = ele;
             } },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Nav_TopNav__["a" /* default */], null),
           __WEBPACK_IMPORTED_MODULE_3__routes_index__["c" /* routerConfig */].map(function (route) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RouteWithSubRoutes, _extends({ key: route.path }, route));
           }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Footer__["a" /* default */], null)
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Footer__["a" /* default */], null),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: __WEBPACK_IMPORTED_MODULE_7__index_scss___default.a.sliceMask, onClick: emitMobileSlide, role: 'Button', tabIndex: '-1', onKeyDown: emitMobileSlide })
         )
       )
     )
@@ -5520,11 +5545,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(RouteWithSubRoutes, 'RouteWithSubRoutes', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/app/index.jsx');
+  __REACT_HOT_LOADER__.register(RouteWithSubRoutes, 'RouteWithSubRoutes', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/app/index.jsx');
 
-  __REACT_HOT_LOADER__.register(App, 'App', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/app/index.jsx');
+  __REACT_HOT_LOADER__.register(App, 'App', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/app/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/app/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/app/index.jsx');
 }();
 
 ;
@@ -5578,17 +5603,17 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Achieve, 'Achieve', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/create-route-server.jsx');
+  __REACT_HOT_LOADER__.register(Achieve, 'Achieve', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/create-route-server.jsx');
 
-  __REACT_HOT_LOADER__.register(Tag, 'Tag', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/create-route-server.jsx');
+  __REACT_HOT_LOADER__.register(Tag, 'Tag', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/create-route-server.jsx');
 
-  __REACT_HOT_LOADER__.register(Page, 'Page', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/create-route-server.jsx');
+  __REACT_HOT_LOADER__.register(Page, 'Page', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/create-route-server.jsx');
 
-  __REACT_HOT_LOADER__.register(ItemListContainer, 'ItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/create-route-server.jsx');
+  __REACT_HOT_LOADER__.register(ItemListContainer, 'ItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/create-route-server.jsx');
 
-  __REACT_HOT_LOADER__.register(HeaderItemListContainer, 'HeaderItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/create-route-server.jsx');
+  __REACT_HOT_LOADER__.register(HeaderItemListContainer, 'HeaderItemListContainer', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/create-route-server.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/routes/create-route-server.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/routes/create-route-server.jsx');
 }();
 
 ;
@@ -6170,9 +6195,9 @@ var _temp2 = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(PreloaderLink, 'PreloaderLink', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/PreloadLink/index.jsx');
+  __REACT_HOT_LOADER__.register(PreloaderLink, 'PreloaderLink', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/PreloadLink/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/PreloadLink/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/PreloadLink/index.jsx');
 }();
 
 ;
@@ -6228,9 +6253,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Page404, 'Page404', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/page404.jsx');
+  __REACT_HOT_LOADER__.register(Page404, 'Page404', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/page404.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/page404.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/page404.jsx');
 }();
 
 ;
@@ -6298,9 +6323,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Pagination, 'Pagination', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/pagination.jsx');
+  __REACT_HOT_LOADER__.register(Pagination, 'Pagination', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/pagination.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Page/pagination.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Page/pagination.jsx');
 }();
 
 ;
@@ -6377,9 +6402,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Item, 'Item', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Item/index.jsx');
+  __REACT_HOT_LOADER__.register(Item, 'Item', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Item/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Item/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Item/index.jsx');
 }();
 
 ;
@@ -6391,7 +6416,7 @@ var _temp = function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
@@ -6488,9 +6513,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Pagination, 'Pagination', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/ItemListContainer/pagination.jsx');
+  __REACT_HOT_LOADER__.register(Pagination, 'Pagination', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/ItemListContainer/pagination.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/ItemListContainer/pagination.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/ItemListContainer/pagination.jsx');
 }();
 
 ;
@@ -6807,9 +6832,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(Action, 'Action', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/index.js');
+  __REACT_HOT_LOADER__.register(Action, 'Action', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/index.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/action/index.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/action/index.js');
 }();
 
 ;
@@ -6842,11 +6867,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(api, 'api', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/api/index.js');
+  __REACT_HOT_LOADER__.register(api, 'api', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/api/index.js');
 
-  __REACT_HOT_LOADER__.register(prefix, 'prefix', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/api/index.js');
+  __REACT_HOT_LOADER__.register(prefix, 'prefix', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/api/index.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/api/index.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/api/index.js');
 }();
 
 ;
@@ -6871,9 +6896,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(isProd, 'isProd', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/api/create-api-server.js');
+  __REACT_HOT_LOADER__.register(isProd, 'isProd', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/api/create-api-server.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/api/create-api-server.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/api/create-api-server.js');
 }();
 
 ;
@@ -6889,11 +6914,11 @@ var _temp = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_redux__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_helmet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_helmet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__menuList__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mediaList__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__index_scss__ = __webpack_require__(11);
@@ -6993,13 +7018,13 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(LeftNav, 'LeftNav', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/index.jsx');
+  __REACT_HOT_LOADER__.register(LeftNav, 'LeftNav', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToLeftNavProps, 'mapStateToLeftNavProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToLeftNavProps, 'mapStateToLeftNavProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/index.jsx');
 
-  __REACT_HOT_LOADER__.register(LeftNavWithRedux, 'LeftNavWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/index.jsx');
+  __REACT_HOT_LOADER__.register(LeftNavWithRedux, 'LeftNavWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/index.jsx');
 }();
 
 ;
@@ -7076,11 +7101,11 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(MenuList, 'MenuList', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/menuList.jsx');
+  __REACT_HOT_LOADER__.register(MenuList, 'MenuList', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/menuList.jsx');
 
-  __REACT_HOT_LOADER__.register(Menu, 'Menu', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/menuList.jsx');
+  __REACT_HOT_LOADER__.register(Menu, 'Menu', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/menuList.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/menuList.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/menuList.jsx');
 }();
 
 ;
@@ -7168,9 +7193,9 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(MediaList, 'MediaList', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/mediaList.jsx');
+  __REACT_HOT_LOADER__.register(MediaList, 'MediaList', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/mediaList.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Nav/LeftNav/mediaList.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/LeftNav/mediaList.jsx');
 }();
 
 ;
@@ -7182,11 +7207,113 @@ var _temp = function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_redux__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_scss__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__index_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_eventCenter__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__PreloadLink_preLoadLinkWithRouteConf__ = __webpack_require__(3);
+/**
+ * Top导航栏。触发主题
+ */
+
+
+
+
+
+
+
+
+
+var TopNav = function TopNav(props) {
+  var _props$options = props.options,
+      title = _props$options.title,
+      logoUrl = _props$options.logoUrl;
+
+
+  var handleClick = function handleClick() {
+    __WEBPACK_IMPORTED_MODULE_4__utils_eventCenter__["a" /* default */].emit('mobileSlide');
+    console.log('mobileSlide');
+  };
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    'div',
+    { className: __WEBPACK_IMPORTED_MODULE_3__index_scss___default.a.leftNav_container },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { className: __WEBPACK_IMPORTED_MODULE_3__index_scss___default.a.leftNav_btnBar, onClick: handleClick, role: 'button', tabIndex: '-1', onKeyUp: handleClick },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', null)
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'h1',
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'a',
+        { href: '/' },
+        title
+      )
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_5__PreloadLink_preLoadLinkWithRouteConf__["a" /* default */],
+      { to: '/about' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: logoUrl, alt: 'logo' })
+    )
+  );
+};
+
+TopNav.propTypes = {
+  options: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.shape({})
+};
+
+var mapStateToTopNavProps = function mapStateToTopNavProps(state) {
+  return {
+    options: state.options
+  };
+};
+
+var TopNavWithRedux = Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["connect"])(mapStateToTopNavProps)(TopNav);
+
+var _default = TopNavWithRedux;
+/* harmony default export */ __webpack_exports__["a"] = (_default);
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(TopNav, 'TopNav', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/TopNav/index.jsx');
+
+  __REACT_HOT_LOADER__.register(mapStateToTopNavProps, 'mapStateToTopNavProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/TopNav/index.jsx');
+
+  __REACT_HOT_LOADER__.register(TopNavWithRedux, 'TopNavWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/TopNav/index.jsx');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Nav/TopNav/index.jsx');
+}();
+
+;
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"leftNav_container":"src-components-Nav-TopNav-index__leftNav_container","leftNav_btnBar":"src-components-Nav-TopNav-index__leftNav_btnBar"};
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_redux__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_scss__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_scss__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__index_scss__);
 /**
  * 脚步区域显示，版权等
@@ -7260,57 +7387,57 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(currentYear, 'currentYear', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Footer/index.jsx');
+  __REACT_HOT_LOADER__.register(currentYear, 'currentYear', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Footer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(Footer, 'Footer', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Footer/index.jsx');
+  __REACT_HOT_LOADER__.register(Footer, 'Footer', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Footer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(mapStateToFooterProps, 'mapStateToFooterProps', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Footer/index.jsx');
+  __REACT_HOT_LOADER__.register(mapStateToFooterProps, 'mapStateToFooterProps', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Footer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(FooterWithRedux, 'FooterWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Footer/index.jsx');
+  __REACT_HOT_LOADER__.register(FooterWithRedux, 'FooterWithRedux', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Footer/index.jsx');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/components/Footer/index.jsx');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/components/Footer/index.jsx');
 }();
 
 ;
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"footer_copyright":"src-components-Footer-index__footer_copyright"};
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"main_container":"src-components-app-index__main_container","main_left":"src-components-app-index__main_left","main_right":"src-components-app-index__main_right"};
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+module.exports = {"footer_copyright":"src-components-Footer-index__footer_copyright"};
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+module.exports = {"main_container":"src-components-app-index__main_container","main_left":"src-components-app-index__main_left","main_right":"src-components-app-index__main_right","sliceMask":"src-components-app-index__sliceMask"};
 
 /***/ }),
 /* 61 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_redux__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_thunk__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_thunk__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_thunk___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_redux_thunk__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_logger__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_logger__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_logger___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_redux_logger__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reducers__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reducers__ = __webpack_require__(66);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 
@@ -7345,27 +7472,27 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(configureStore, 'configureStore', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/store/index.js');
+  __REACT_HOT_LOADER__.register(configureStore, 'configureStore', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/store/index.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/store/index.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/store/index.js');
 }();
 
 ;
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-logger");
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7442,15 +7569,15 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(reducerMap, 'reducerMap', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/reducers/index.js');
+  __REACT_HOT_LOADER__.register(reducerMap, 'reducerMap', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/reducers/index.js');
 
-  __REACT_HOT_LOADER__.register(StateStructureArr, 'StateStructureArr', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/reducers/index.js');
+  __REACT_HOT_LOADER__.register(StateStructureArr, 'StateStructureArr', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/reducers/index.js');
 
-  __REACT_HOT_LOADER__.register(generateReducerByStateKey, 'generateReducerByStateKey', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/reducers/index.js');
+  __REACT_HOT_LOADER__.register(generateReducerByStateKey, 'generateReducerByStateKey', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/reducers/index.js');
 
-  __REACT_HOT_LOADER__.register(generateReducer, 'generateReducer', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/reducers/index.js');
+  __REACT_HOT_LOADER__.register(generateReducer, 'generateReducer', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/reducers/index.js');
 
-  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/Blog/front/src/reducers/index.js');
+  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/lance/Desktop/Dev_FED/Personal_works/lancelou-new/Blog/front/src/reducers/index.js');
 }();
 
 ;

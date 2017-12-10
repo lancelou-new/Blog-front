@@ -53,3 +53,42 @@
     padding-left: 0;
   }
 }
+
+@media screen and (max-width: 768px){
+  .left_navContainer {
+    h2 {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .left_navContainer {
+    .left_icon {
+      display: none;
+    }
+
+    h2 {
+      visibility: hidden;
+    }
+
+    a > span {
+      display: none;
+    }
+
+    .left_mediaMenu {
+      padding-left: 0;
+
+      a {
+        margin: 5px 0;
+      }
+    }
+  
+    .left_menuItem > a, .left_mediaMenu > a {
+      width: 100%;
+      text-align: center;
+      margin-left: 10px;
+      padding: 0;
+    }
+  }
+}
