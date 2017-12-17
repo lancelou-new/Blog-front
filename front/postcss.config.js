@@ -6,7 +6,10 @@ module.exports = {
     autoprefixer,
     cssnano({
       preset: 'default',
-      discardUnused: { fontFace: false },
+      discardUnused: {
+        fontFace: false,
+      },
+      safe: true
     }),
   ],
 };

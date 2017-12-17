@@ -1,0 +1,16 @@
+.loadingBar_container {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px !important;
+  .loadingBar_progress {
+    transition: width 200ms linear;
+    background-color: #71D1FE;
+    height: 100%;
+    width: 0%;
+  }
+}
+
+

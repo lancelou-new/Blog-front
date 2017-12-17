@@ -1,1 +1,0 @@
-webpackJsonp([3],{62:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var u=n(0),r=n.n(u),a=function(){return r.a.createElement("h1",null,"这是带头部的itemList展示容器组件")};t.default=a}});

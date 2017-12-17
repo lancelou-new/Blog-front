@@ -260,6 +260,14 @@ const Action = {
       });
       return optionsMap;
     }),
+
+  startLoading: () => ({
+    type: 'LOADING_START'
+  }),
+
+  stopLoading: () => ({
+    type: 'LOADING_STOP'
+  })
 };
 
 export default Action;

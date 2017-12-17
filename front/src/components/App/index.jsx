@@ -14,6 +14,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Router, { routerConfig } from '../../routes/index';
+import Loading from '../Loading';
 import LeftNav from '../Nav/LeftNav';
 import TopNav from '../Nav/TopNav';
 import Footer from '../Footer';
@@ -36,10 +37,7 @@ const RouteWithSubRoutes = route => (
 
 const App = ({ store, serverRouteConf }) => {
   let mainContainer = null;
-
-  const emitMobileSlide = () => {
-    EventEmit.emit('mobileSlide');
-  };
+  let container = null;
 
   // 组件重渲染，回到顶部事件
   EventEmit.on('backToTop', () => {
@@ -49,37 +47,38 @@ const App = ({ store, serverRouteConf }) => {
     mainContainer.scrollTo(0, 0);
   });
 
-  // 移动端slide时间触发，双向
-  EventEmit.on('mobileSlide', () => {
-    const body = document.body;
-    let bodyClassName = body.className;
-    console.log(bodyClassName);
-    if (bodyClassName.indexOf('side') >= 0) {
-      bodyClassName = bodyClassName.replace(/(\s)?side(\s)?/, (arg1, arg2, arg3) => (arg2 && arg3 ? ' ' : ''));
+  // 移动端slide回调
+  const mobileSlideCallback = () => {
+    if (!container) {
+      return;
+    }
+    let className = container.className;
+    if (className.indexOf('side') >= 0) {
+      className = className.replace(/(\s)?side(\s)?/, (arg1, arg2, arg3) => (arg2 && arg3 ? ' ' : ''));
     } else {
-      bodyClassName += ' side';
+      className += ' side';
       EventEmit.emit('backToTop');
     }
-    console.log(bodyClassName);
-    body.className = bodyClassName;
-  });
+    container.className = className;
+  };
 
   return (
     <Provider store={store}>
       <Router location={serverRouteConf && serverRouteConf.url}>
-        <div className={Style.main_container}>
+        <div className={Style.main_container} ref={(ele) => { container = ele; }}>
+          <Loading />
           <div className={Style.main_left}>
             <LeftNav />
           </div>
           <div className={Style.main_right} ref={(ele) => { mainContainer = ele; }}>
-            <TopNav />
+            <TopNav mobileSlideCallback={mobileSlideCallback} />
             {
               routerConfig.map(route => (
                 <RouteWithSubRoutes key={route.path} {...route} />
               ))
             }
             <Footer />
-            <div className={Style.sliceMask} onClick={emitMobileSlide} role="Button" tabIndex="-1" onKeyDown={emitMobileSlide} />
+            <div className={Style.sliceMask} onClick={mobileSlideCallback} role="Button" tabIndex="-1" onKeyDown={mobileSlideCallback} />
           </div>
         </div>
       </Router>

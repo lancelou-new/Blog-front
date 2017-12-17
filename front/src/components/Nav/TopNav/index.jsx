@@ -7,15 +7,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Style from './index.scss';
 
-import EventEmit from '../../../utils/eventCenter';
 import PreLoadLinkWithRouteConf from '../../PreloadLink/preLoadLinkWithRouteConf';
 
 const TopNav = (props) => {
   const { title, logoUrl } = props.options;
 
   const handleClick = () => {
-    EventEmit.emit('mobileSlide');
-    console.log('mobileSlide');
+    props.mobileSlideCallback();
   };
 
   return (
@@ -34,7 +32,8 @@ const TopNav = (props) => {
 };
 
 TopNav.propTypes = {
-  options: PropTypes.shape({})
+  options: PropTypes.shape({}),
+  mobileSlideCallback: PropTypes.func,
 };
 
 const mapStateToTopNavProps = state => ({

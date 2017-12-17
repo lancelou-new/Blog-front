@@ -5,10 +5,12 @@
  */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Link,
 } from 'react-router-dom';
+import Action from '../../action';
 
 class PreloaderLink extends Component {
   static contextTypes = {
@@ -19,6 +21,8 @@ class PreloaderLink extends Component {
   }
 
   static propTypes = {
+    startLoading: PropTypes.func,
+    stopLoading: PropTypes.func,
     onPreload: PropTypes.func,
     replace: PropTypes.bool,
     to: PropTypes.string,
@@ -26,8 +30,12 @@ class PreloaderLink extends Component {
 
   handleClick = (evt) => {
     evt.preventDefault();
-    const { replace, to } = this.props;
+    const {
+      replace, to, startLoading, stopLoading
+    } = this.props;
+    startLoading();
     this.props.onPreload().then(() => {
+      stopLoading();
       if (replace) {
         this.context.router.history.replace(to);
       } else {
@@ -45,4 +53,9 @@ class PreloaderLink extends Component {
   }
 }
 
-export default PreloaderLink;
+const PreloaderLinkWithRedux = connect(null, {
+  startLoading: Action.startLoading,
+  stopLoading: Action.stopLoading,
+})(PreloaderLink);
+
+export default PreloaderLinkWithRedux;

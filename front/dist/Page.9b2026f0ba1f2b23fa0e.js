@@ -1,1 +1,0 @@
-webpackJsonp([0],{26:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var u=t(0),r=t.n(u),a=function(){return r.a.createElement("h1",null,"页面组件,专门用来显示后端返回")};n.default=a}});

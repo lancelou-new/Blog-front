@@ -38,6 +38,7 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const proxyRequest = require('request');
+const request = require('./server/server-axios');
 const schedule = require('node-schedule');
 // const { renderToString }
 
@@ -47,12 +48,10 @@ const devWebpackMiddleware = require('./build/devServer-setup');
 log.level = 'debug';
 
 // seo with robots and sitemap
-/*
-  const getRobotsFromConfig = require('./server/robots.js')
-  const { api: sitemapApi, params: sitemapParams, getSitemapFromBody } =
-  require('./server/sitemap.js')
-  const { api: rssApi, params: rssParams, getRssBodyFromBody } = require('./server/rss.js')
-*/
+const getRobotsFromConfig = require('./server/robots.js');
+const { api: sitemapApi, params: sitemapParams, getSitemapFromBody } =
+require('./server/sitemap.js');
+const { api: rssApi, params: rssParams, getRssBodyFromBody } = require('./server/rss.js');
 
 const resolve = file => path.resolve(__dirname, file);
 
@@ -74,22 +73,6 @@ if (isProd) {
   }
 }
 
-
-// const app = express();
-/**
- * 设置为trust proxy意味着我们的app运行于一个"前端"代理后面，同时使用X-Forwarded-*(client to proxy or loader balancer,
- * not proxy or loader banancer to server) http头部来判断连接，
- * 以及客服端的IP地址。 NOTE: X-Forwarded-* 是非常容易被用来欺骗的，被检测的IP也是不可靠
- */
-/*
-app.enable('trust proxy');
-let html;
-
-// 构建我们的服务端渲染html
-const flushHtml = () => {
-
-};
-*/
 /**
  * 区分开发和生产环境的主要目的在于:
  *  开发环境下需要连接webpack打包服务(文件改变进行刷新)，无需行内样式，无需内存存储资源，
@@ -107,6 +90,18 @@ function flushHtml(template) {
   };
 }
 
+let sitemap = null;
+let rss = null;
+let robots = null;
+
+const flushSitemap = () => request.get(sitemapApi, sitemapParams).then((result) => {
+  sitemap = getSitemapFromBody(result, config);
+});
+
+const flushRss = () => request.get(rssApi, rssParams).then((result) => {
+  rss = getRssBodyFromBody(result, config);
+});
+
 const requireFromFileString = (modelStr, filename) => {
   const Module = module.constructor;
   const paths = Module._nodeModulePaths(path.dirname(filename));
@@ -118,14 +113,24 @@ const requireFromFileString = (modelStr, filename) => {
 };
 
 config.flushOption().then(() => {
-  // start the app main logic
-  // pre: sitemap, robots, rss(占位)
-
+  /**
+   * 设置为trust proxy意味着我们的app运行于一个"前端"代理后面，同时使用X-Forwarded-*(client to proxy or loader balancer,
+   * not proxy or loader banancer to server) http头部来判断连接，
+   * 以及客服端的IP地址。 NOTE: X-Forwarded-* 是非常容易被用来欺骗的，被检测的IP也是不可靠
+   */
   const app = express();
   app.enable('trust proxy');
 
   let ssrRenderMiddleware = null;
   let html = null;
+
+  robots = getRobotsFromConfig(config);
+  flushRss();
+  flushSitemap();
+  schedule.scheduleJob('30 3 * * * ', () => {
+    flushRss();
+    flushSitemap();
+  });
 
   if (isProd) {
     // 生产环境下服务端
@@ -136,11 +141,9 @@ config.flushOption().then(() => {
     // 开发环境下需要连接webpack打包服务(文件改变进行刷新)，无需行内样式，无需内存存储资源，
     devWebpackMiddleware(app, {
       indexHtmlUpdate: (htmlFile) => {
-        fs.writeFileSync('./test.out.html', htmlFile);
         html = flushHtml(htmlFile);
       },
       serverBundleUpdate: (serverBundleStr, outputPath) => {
-        fs.writeFileSync('./test.out.js', serverBundleStr);
         ssrRenderMiddleware = (requireFromFileString(serverBundleStr, outputPath)).default;
       },
     }); // 连接上webpack Hot Middleware， 进行打包及相关的热更新服务
@@ -176,15 +179,16 @@ config.flushOption().then(() => {
   app.use('/static', staticServe('./dist/static'));
   app.get('/favicon.ico', faviconMiddleware(config.favicon));
 
-  // app.get('/robots.txt', (req, res, next) => res.end(robots))
-  // app.get('/rss.xml', (req, res, next) => {
-  //   res.header('Content-Type', 'application/xml')
-  //   return res.end(rss)
-  // })
-  // app.get('/sitemap.xml', (req, res, next) => {
-  //   res.header('Content-Type', 'application/xml')
-  //   return res.end(sitemap)
-  // })
+  // seo match
+  app.get('/robots.txt', (req, res) => res.end(robots));
+  app.get('/rss.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml');
+    return res.end(rss);
+  });
+  app.get('/sitemap.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml');
+    return res.end(sitemap);
+  });
 
   app.get('*', (req, res, next) => {
     if (!ssrRenderMiddleware) {
