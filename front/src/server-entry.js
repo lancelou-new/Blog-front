@@ -30,7 +30,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { renderToNodeStream } from 'react-dom/server';
 import { matchPath } from 'react-router-dom';
-import App from './components/app';
+import App from './components/App';
 import configureStore from './store';
 import { mustSSRLoad, routerConfig } from './routes/index';
 import generateParams from './action/requestParamsFactory';
