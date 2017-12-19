@@ -6,7 +6,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store';
-import App from './components/app';
+import App from './components/App';
 
 const isProd = process.env.NODE_ENV === 'production';
 const callback = isProd ? setTimeout : func => func();
