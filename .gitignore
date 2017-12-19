@@ -60,3 +60,4 @@ typings/
 # custome
 dist/
 server/db.config.js
+schedule.md

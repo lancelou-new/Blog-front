@@ -13,6 +13,10 @@ let title = 'Blog';
 let description = '';
 let favicon = isProd ? './dist' : '.';
 
+// 评论相关
+let commentType = 'disqus';
+let commentName = '';
+
 // 一些配置项，储存于MongoDB。也即本文件的几乎所有的配置项，此函数被用来对这些配置项进行更新
 function flushOption() {
   return request.get('http://localhost:3000/api/option').then((res) => {
@@ -25,6 +29,9 @@ function flushOption() {
     description = options.description;
     // googleTrackID = options.analyzeCode;
     favicon += options.faviconUrl;
+
+    commentType = options.commentType;
+    commentName = options.commentName;
   });
 }
 
@@ -91,4 +98,16 @@ Object.defineProperty(exports, 'flushOption', {
 //     return ga;
 //   },
 // });
+Object.defineProperty(exports, 'commentType', {
+  enumerable: true,
+  get() {
+    return commentType;
+  }
+});
 
+Object.defineProperty(exports, 'commentName', {
+  enumerable: true,
+  get() {
+    return commentName;
+  }
+});

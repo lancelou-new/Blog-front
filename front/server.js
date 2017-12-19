@@ -44,6 +44,7 @@ const schedule = require('node-schedule');
 
 const faviconMiddleware = require('./middleware/favicon');
 const devWebpackMiddleware = require('./build/devServer-setup');
+const disqusProyMiddleware = require('./server/disqusProxy');
 
 log.level = 'debug';
 
@@ -189,6 +190,8 @@ config.flushOption().then(() => {
     res.header('Content-Type', 'application/xml');
     return res.end(sitemap);
   });
+
+  app.get('/disqus/comments', disqusProyMiddleware.comments);
 
   app.get('*', (req, res, next) => {
     if (!ssrRenderMiddleware) {
