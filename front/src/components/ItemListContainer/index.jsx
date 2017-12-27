@@ -28,7 +28,9 @@ class ItemListContainer extends React.Component {
   }
 
   render() {
-    const { itemList, pagination, withoutPagination, siteTitle } = this.props;
+    const {
+      itemList, pagination, withoutPagination, siteTitle
+    } = this.props;
     return (
       <section>
         <Helmet>

@@ -17,6 +17,12 @@ let favicon = isProd ? './dist' : '.';
 let commentType = 'disqus';
 let commentName = '';
 
+// Temp 待添加入库
+const commentDisqusApiKey = 'E8Uh5l5fHZ6gD8U3KycjAIAk46f68Zw7C6eW8WSjZvCLXebZ7p0r1yrYDrLilk2F';
+const commentDisqusApiSecret = 'GdgD8RDkR3QZWaXSNl5f7XmGrAVweJ6Dl9F7oSwbqsInv65mkMojT0l3mOp5Ikzc';
+const commentDisqusAccessToken = 'a7905d2ef4ad4ff5908d101d517f6b08';
+const cookieSecret = 'blog.lc.planX.com.topSecret65?';
+
 // 一些配置项，储存于MongoDB。也即本文件的几乎所有的配置项，此函数被用来对这些配置项进行更新
 function flushOption() {
   return request.get('http://localhost:3000/api/option').then((res) => {
@@ -109,5 +115,33 @@ Object.defineProperty(exports, 'commentName', {
   enumerable: true,
   get() {
     return commentName;
+  }
+});
+
+Object.defineProperty(exports, 'commentApiKey', {
+  enumerable: true,
+  get() {
+    return commentDisqusApiKey;
+  }
+});
+
+Object.defineProperty(exports, 'cookieSecret', {
+  enumerable: true,
+  get() {
+    return cookieSecret;
+  }
+});
+
+Object.defineProperty(exports, 'commentSecret', {
+  enumerable: true,
+  get() {
+    return commentDisqusApiSecret;
+  }
+});
+
+Object.defineProperty(exports, 'commentAccessToken', {
+  enumerable: true,
+  get() {
+    return commentDisqusAccessToken;
   }
 });

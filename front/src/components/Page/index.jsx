@@ -11,6 +11,7 @@ import EventEmit from '../../utils/eventCenter';
 import Page404 from './page404';
 import Pagination from './pagination';
 import PreLoadLinkWithRouteConf from '../PreloadLink/preLoadLinkWithRouteConf';
+import Comment from '../Comment';
 
 class Page extends React.Component {
   static propTypes = {
@@ -39,6 +40,7 @@ class Page extends React.Component {
       </Helmet>
       <PageArticle content={content} />
       {content.type !== 'page' && <Pagination next={next} prev={prev} />}
+      <Comment />
     </div>;
   }
 }

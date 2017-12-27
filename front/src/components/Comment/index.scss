@@ -1,0 +1,169 @@
+.cusDisqus_container {
+ margin: 30px 0 20px;
+ & > h3 {
+  font-size: 1.6rem;
+  i {
+    font-style: normal;
+    font-size: 1rem;
+  }
+ }
+ & > p {
+  margin: 15px 0 3px;
+  font-weight: 500;
+  line-height: 1.5rem;
+ }
+ :global(.hr) {
+  height: 3px;
+  background-color: #eee;
+  span {
+    width: 106px;
+    height: 3px;
+    background-color: #71D1FE;
+    display: block;
+  }
+ }
+
+ & > .cusDisqus_postListContainer {
+   padding-left: 0;
+ }
+}
+
+.cusDisqus_input {
+  position: relative;
+  margin-top: 20px;
+  padding-left: 100px;
+  overflow: hidden;
+  margin-bottom: 20px;
+
+  .cusDisqus_col_Icon {
+    float: left;
+    position: relative;
+    width: 100px;
+    min-height: 100px;
+    left: -100px;
+    box-sizing: border-box;
+    background-image: url(https://ws1.sinaimg.cn/large/ad5d774bgy1fms2prqqiaj202k02k0ct.jpg);
+    background-repeat: no-repeat;
+    background-size: 70px 70px;
+    background-position: top center;
+  }
+  .cusDisqus_col_In {
+    margin-left: -100px;
+    width: 100%;
+    float: left;
+    position: relative;
+    text-align: right;
+
+    div > span {
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid #eee;
+      resize: none;
+      height: 112px;
+      outline: none;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    & > span {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    input {
+      width: 42%;
+      line-height: 1.5rem;
+      border: 2px solid #eee;
+      margin: 5px 0;
+      padding-left: 5px;
+      outline: none;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    button {
+      -webkit-appearance: none;
+      padding: 4px 30px;
+      margin-top: 3px;
+      outline: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.cusDisqus_input_hidden {
+  display: none;
+}
+
+.cusDisqus_postListContainer {
+  padding-left: 50px;
+  .cusDisqus_post {
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    .cusDisqus_postContent {
+      width: 100%;
+      padding-left: 60px;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+
+      & > * {
+        position: relative;
+        float: left;
+      }
+      .cusDisqus_post_colIcon {
+        width: 60px;
+        left: -60px;
+        margin-left: -100%;
+        text-align: center;
+        img {
+          width: 42px;
+        }
+      }
+      .cusDisqus_post_colContent {
+        width: 100%;
+        p {
+          margin: 7px 0;
+          line-height: 1.4rem;
+          color: #222;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px){
+  .cusDisqus_input {
+    padding-left: 0;
+    .cusDisqus_col_Icon {
+      display: none;
+    }
+
+    .cusDisqus_col_In {
+      margin-left: 0;
+      textarea {
+        margin-left: 0;
+      }
+      input {
+        width: 100%;
+      }
+      button {
+        width: 100%;
+        line-height: 1.5rem;
+        color: #fff;
+        background-color: #778289;
+        font-weight: 600;
+      }
+    }
+  }
+  
+}

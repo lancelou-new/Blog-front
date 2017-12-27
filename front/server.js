@@ -37,6 +37,7 @@ const log = require('log4js').getLogger('ssr server');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 const proxyRequest = require('request');
 const request = require('./server/server-axios');
 const schedule = require('node-schedule');
@@ -150,7 +151,9 @@ config.flushOption().then(() => {
     }); // 连接上webpack Hot Middleware， 进行打包及相关的热更新服务
   }
 
-  app.use(require('cookie-parser')());
+  app.use(require('cookie-parser')(config.cookieSecret));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded());
 
   const prefix = '/proxyPrefix/';
 
@@ -169,6 +172,9 @@ config.flushOption().then(() => {
       return next();
     }
   });
+
+  app.get('/disqus/comments.json', disqusProyMiddleware.comments);
+  app.post('/disqus/post.json', disqusProyMiddleware.post);
 
   const staticServe = (reqPath, cache) => express.static(resolve(reqPath), {
     maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0,
@@ -190,8 +196,6 @@ config.flushOption().then(() => {
     res.header('Content-Type', 'application/xml');
     return res.end(sitemap);
   });
-
-  app.get('/disqus/comments', disqusProyMiddleware.comments);
 
   app.get('*', (req, res, next) => {
     if (!ssrRenderMiddleware) {

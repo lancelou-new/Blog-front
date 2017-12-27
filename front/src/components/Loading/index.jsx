@@ -57,9 +57,6 @@ class Loading extends React.Component {
     const self = this;
 
     function animationFunc() {
-      console.log(percent);
-      console.log(timeFunc(change, percent));
-
       percent += timeFunc(change, percent);
 
       if (percent >= end) {
@@ -109,8 +106,6 @@ class Loading extends React.Component {
     const end = Loading.ANIMATE_END_PERCENT;
     const interval = Loading.ANIMATE_TIME_INTERVAL;
     let percent = Loading.ANIMATE_START_PERCENT;
-
-    console.log('lauch function call');
 
     this.animateTime =
       window.setTimeout(this.getAnimateFunc(

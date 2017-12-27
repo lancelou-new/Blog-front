@@ -813,6 +813,15 @@ h1.intro {
   text-align: center;
 }
 
+button.anchorLike {
+  appearance: none;
+  color: #2479cc;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 767px){
   .page_pagination {
     height: auto;
