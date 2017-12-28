@@ -1,4 +1,4 @@
-/* eslint no-plusplus: 0 */
+/* eslint no-plusplus: 0, no-loop-func: 0 */
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -17,6 +17,7 @@ class CustomComment extends React.Component {
 
   constructor(props) {
     super(props);
+    this.originalPost = null;
     this.state = {
       posts: [],
       thread: null,
@@ -46,6 +47,8 @@ class CustomComment extends React.Component {
     const { total } = res.data.cursor;
     const flatedPosts = this.flatePosts(posts);
 
+    this.originalPost = posts;
+
     this.setState({
       posts: flatedPosts,
       thread,
@@ -71,24 +74,54 @@ class CustomComment extends React.Component {
     const postBody = Object.assign({}, {
       thread: this.state.thread.id,
     }, data);
-    return axios.post('/disqus/post.json', postBody).then((postRes) => {
+    return axios.post('/disqus/post.json', postBody).then((res) => {
+      const postRes = res.data;
       const posts = this.state.posts;
-      if (postRes.code === 0 && !postRes.parent) {
-        posts.unshift(postRes.response[0]);
-        this.setState({
-          posts
-        });
+      const originalPost = this.originalPost;
+
+      let response = null;
+      let newPosts = null;
+
+      if (postRes.code !== 0) {
+        // 提交出错
+        return Promise.reject();
       }
-      return postRes;
+
+      response = postRes.response;
+
+      if (response && !response[0].parent) {
+        newPosts = [...posts];
+        originalPost.unshift(response[0]);
+        newPosts.unshift(response[0]);
+      } else {
+        // 带父节点的评论提交(直接保存一个原始的posts，后续增删基于此originalPost)
+        let parentIndex = null;
+        originalPost.every((post, index) => {
+          if (post.id == response[0].parent) {
+            parentIndex = index;
+            response[0].depth = post.depth + 1;
+            return false;
+          }
+          return true;
+        });
+        if (parentIndex) {
+          originalPost.splice(parentIndex + 1, 0, response[0]);
+          newPosts = this.flatePosts(originalPost);
+        }
+      }
+      this.setState({
+        posts: newPosts
+      });
+      return Promise.resolve();
     });
   };
 
+  // 结构化后端传回的posts
   flatePosts = (posts) => {
     const newPosts = [];
-
+    let prev = null;
     for (let i = 0; i < posts.length; i++) {
-      const prev = posts[i - 1];
-      const cur = posts[i];
+      const cur = Object.assign({}, posts[i]);
       if (prev && cur.depth > prev.depth && cur.depth <= MAX_COMMENT_DEPTH) {
         const newChildren = [];
         posts.slice(i).every((post) => {
@@ -104,6 +137,7 @@ class CustomComment extends React.Component {
       } else {
         newPosts.push(cur);
       }
+      prev = cur;
     }
 
     return newPosts;

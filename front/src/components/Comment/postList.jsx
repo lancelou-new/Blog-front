@@ -34,7 +34,6 @@ class Post extends React.Component {
     this.state = {
       isShowIn: false,
       isWithIn: false,
-      post: props.post,
     };
   }
   handlerReply = () => {
@@ -50,19 +49,10 @@ class Post extends React.Component {
       isShowIn: false,
     });
   }
-  handlerReplySuccess = (response) => {
-    // 发表成功处理回调函数，插入response体
-    const { post } = this.store;
-    post.children = post.children || [];
-    post.children.unshift(response[0]);
-    this.setState({
-      post
-    });
-  }
   render() {
     const {
       message, author, createdAt, children, id
-    } = this.state.post;
+    } = this.props.post;
     const { isShowIn, isWithIn } = this.state;
     const authorAvator = isMobile ? author.avatar.small.cache
       : author.avatar.large.cache;
@@ -98,7 +88,6 @@ class Post extends React.Component {
             show={isShowIn}
             parent={id}
             hiddenMe={this.hiddenReply}
-            handlerReplySuccess={this.handlerReplySuccess}
           />
         }
         { children && <PostList posts={children} />}
@@ -154,14 +143,10 @@ const UserInArea = (props) => {
     props.parent && (data.parent = props.parent);
 
     curReferTime = new Date();
-    props.handlerSubmitPost(data).then((postRes) => {
+    props.handlerSubmitPost(data).then(() => {
       Object.keys(userInRefs).forEach((ref) => {
         userInRefs[ref].value = '';
       });
-      if (postRes.code === 0) {
-        props.handlerReplySuccess &&
-          props.handlerReplySuccess(postRes.response);
-      }
       hidden();
     }).catch(() => {
       console.log('anonymous post error');
@@ -202,9 +187,7 @@ const PostList = (props) => {
   return (
     <ul className={Style.cusDisqus_postListContainer}>
       {
-        posts.map(post => (
-          <Post post={post} key={post.id} />
-        ))
+        posts.map(post => <Post post={post} key={post.id} />)
       }
     </ul>
   );
