@@ -62,3 +62,5 @@ dist/
 server/db.config.js
 server/config.js
 schedule.md
+front/server/config.js
+front/server/db.config.js

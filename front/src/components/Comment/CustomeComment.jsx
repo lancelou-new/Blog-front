@@ -72,7 +72,7 @@ class CustomComment extends React.Component {
       thread: this.state.thread.id,
     }, data);
     return axios.post('/disqus/post.json', postBody).then(() => {
-      this.fetchAllComment();
+      setTimeout(this.fetchAllComment, 1000);
     });
   };
 

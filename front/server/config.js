@@ -15,7 +15,7 @@ let favicon = isProd ? './dist' : '.';
 
 // 评论相关
 let commentType = 'disqus';
-let commentName = '';
+let commentName = 'lanceloublog';
 
 // Temp 待添加入库
 const commentDisqusApiKey = 'E8Uh5l5fHZ6gD8U3KycjAIAk46f68Zw7C6eW8WSjZvCLXebZ7p0r1yrYDrLilk2F';
@@ -36,8 +36,8 @@ function flushOption() {
     // googleTrackID = options.analyzeCode;
     favicon += options.faviconUrl;
 
-    commentType = options.commentType;
-    commentName = options.commentName;
+    commentType = options.commentType || commentType;
+    commentName = options.commentName || commentName;
   });
 }
 

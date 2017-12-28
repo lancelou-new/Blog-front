@@ -60,6 +60,7 @@ const verifyCommentCsrfCookie = (req, res, reqBody) => {
 
 const approvePost = postId => new Promise((resolve, reject) => {
   const options = {
+    method: 'POST',
     uri: 'https://disqus.com/api/3.0/posts/approve.json',
     qs: {
       post: postId,
@@ -158,10 +159,14 @@ disqusProyMiddleware.post = (req, res) => {
   postNum = commentCsrf.slice(commentCsrf.lastIndexOf('-')) - 0;
   setCsrfCookie(req, res, title, postNum + 1);
 
+  const postToDisqus = Object.assign({}, body, {
+    api_key: config.commentApiKey,
+  });
+
   const options = {
     method: 'POST',
     uri: 'https://disqus.com/api/3.0/posts/create.json',
-    qs: body,
+    qs: postToDisqus,
     json: true,
   };
 
