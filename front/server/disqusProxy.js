@@ -73,7 +73,7 @@ const approvePost = postId => new Promise((resolve, reject) => {
     if (error) {
       reject(error);
     }
-    resolve({ code: body.response.code });
+    resolve(body);
   });
 });
 
