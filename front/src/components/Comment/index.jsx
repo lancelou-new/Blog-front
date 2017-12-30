@@ -39,7 +39,7 @@ class Comment extends React.Component {
       this.page.identifier = window.location.href;
     };
 
-    scriptTag.src = 'https://lancelou.disqus.com/embed.js';
+    scriptTag.src = 'https://lanceloublog.disqus.com/embed.js';
     scriptTag.async = 'async';
 
     image.onload = () => {

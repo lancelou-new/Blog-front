@@ -33,7 +33,7 @@
 
 const isProd = process.env.NODE_ENV === 'production';
 const config = require('./server/config');
-const log = require('log4js').getLogger('ssr server');
+const log4js = require('log4js');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -60,10 +60,13 @@ const resolve = file => path.resolve(__dirname, file);
 // inline css cache in memory
 const inline = isProd ? fs.readFileSync(resolve('./dist/styles.css'), 'utf-8') : '';
 
-
 // dist中的打包输出文件使用内存缓存
 const chunkObj = {};
 if (isProd) {
+  log4js.configure({
+    appenders: { ssrServer: { type: 'file', filename: 'error.log' } },
+    categories: { default: { appenders: ['ssrServer'], level: 'error' } }
+  });
   const fileArr = fs.readdirSync(resolve('./dist'));
   for (let i = 0, len = fileArr.length; i < len; i += 1) {
     const fileName = fileArr[i];
@@ -74,6 +77,8 @@ if (isProd) {
     }
   }
 }
+
+const log = log4js.getLogger('ssrServer');
 
 /**
  * 区分开发和生产环境的主要目的在于:
@@ -165,7 +170,7 @@ config.flushOption().then(() => {
     if (url.startsWith(prefix)) {
       const rewriteUrl = `http://localhost:${config.serverPort}/${url.replace(prefix, '')}`;
       proxyRequest.get(rewriteUrl).on('error', (err) => {
-        res.end(err);
+        res.status(500).json(err).end();
         log.error(err);
       }).pipe(res);
     } else {
