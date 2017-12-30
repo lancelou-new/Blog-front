@@ -166,7 +166,7 @@ config.flushOption().then(() => {
     if (!isProd) return next();
     // proxy with node in production
     if (url.startsWith(prefix)) {
-      const rewriteUrl = `http://localhost:${config.serverPort}/${url.replace(prefix, '')}`;
+      const rewriteUrl = encodeURI(`http://localhost:${config.serverPort}/${url.replace(prefix, '')}`);
       proxyRequest.get(rewriteUrl).on('error', (err) => {
         res.status(500).json(err).end();
         log.error(err);
