@@ -268,6 +268,7 @@ const Action = {
   stopLoading: () => ({
     type: 'LOADING_STOP'
   })
+
 };
 
 export default Action;
