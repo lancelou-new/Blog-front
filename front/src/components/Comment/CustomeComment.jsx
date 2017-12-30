@@ -57,14 +57,14 @@ class CustomComment extends React.Component {
   }
 
   fetchAllComment = () => {
-    // const params = {
-    //   postUrl: window.location.href,
-    //   title: window.document.title,
-    // };
     const params = {
-      postUrl: 'https://www.lancelou.com/2017/04/25/react-redux-lession-series/',
-      title: '"跟着Dan Abramov一起学Redux系列 - 娄聪的博客 | Lance Blog"',
+      postUrl: window.location.href,
+      title: window.document.title,
     };
+    // const params = {
+    //   postUrl: 'https://www.lancelou.com/2017/04/25/react-redux-lession-series/',
+    //   title: '"跟着Dan Abramov一起学Redux系列 - 娄聪的博客 | Lance Blog"',
+    // };
     axios.get('/disqus/comments.json', { params }).then(this.onInitDataReady).catch((err) => {
       console.log(err);
     });

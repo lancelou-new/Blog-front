@@ -202,12 +202,12 @@ config.flushOption().then(() => {
       return res.end('waiting for compilation... refresh in a moment.');
     }
 
-    const supportWebp = req.header('accept').includes('image/webp');
+    // const supportWebp = req.header('accept').includes('image/webp');
     res.header('Content-Type', 'text/html; charset=utf-8');
 
     // 调用SSR相关中间件
     ssrRenderMiddleware({
-      html, log, supportWebp, isProd, chunkObj,
+      html, log, isProd, chunkObj,
     })(req, res, next);
   });
 

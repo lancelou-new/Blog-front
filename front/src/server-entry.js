@@ -64,7 +64,7 @@ const createStoreAndLoadData = (req, store) => {
  */
 
 const serverEntryMiddlewareCreator = ({
-  html, log, supportWebp, isProd, chunkObj,
+  html, log, isProd, chunkObj,
 }) => (req, res, next) => {
   const store = configureStore();
   const s = Date.now();
