@@ -1,4 +1,5 @@
 #!/bin/bash
+
 WEB_PATH='/home/lancelou/www/lanceblog/Blog'
 WEB_USER='lancelou'
 WEB_USERGROUP='lancelou'

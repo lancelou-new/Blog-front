@@ -12,17 +12,5 @@
     "env": {
       
     }
-  }, {
-    "name": "webhooklistener",
-    "script": "deploy/listener.js",
-    "cwd": "",
-    "instances": 0,
-    "max_memory_restart": "256M",
-    "autorestart": true,
-    "node_args": [],
-    "args": [],
-    "env": {
-      
-    }
   }]
 }
