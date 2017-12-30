@@ -47,8 +47,6 @@ const faviconMiddleware = require('./middleware/favicon');
 const devWebpackMiddleware = require('./build/devServer-setup');
 const disqusProyMiddleware = require('./server/disqusProxy');
 
-log.level = 'debug';
-
 // seo with robots and sitemap
 const getRobotsFromConfig = require('./server/robots.js');
 const { api: sitemapApi, params: sitemapParams, getSitemapFromBody } =
