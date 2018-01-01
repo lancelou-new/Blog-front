@@ -87,6 +87,7 @@ const baseCssExtConf = (isBrowser, localIdentName) => {
   const useArr = generateCssLoaderUse(false, localIdentName);
   const globalUseArr = generateCssLoaderUse(true);
 
+  // 服务端环境下css需抽掉
   if (!isBrowser) {
     useArr.unshift({
       loader: path.resolve(__dirname, 'clearExtCssOutput-loader.js'),
@@ -101,14 +102,12 @@ const baseCssExtConf = (isBrowser, localIdentName) => {
       test: /\.scss$/,
       exclude: path.resolve(__dirname, '../src/styles'),
       use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
         use: useArr,
       }),
     }, {
       test: /\.scss$/,
       include: path.resolve(__dirname, '../src/styles'),
       use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
         use: globalUseArr,
       }),
     },

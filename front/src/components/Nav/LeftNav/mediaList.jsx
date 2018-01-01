@@ -20,7 +20,7 @@ const MediaList = (props) => {
       icon: 'icon-search',
       title: 'Search',
       isBlank: true,
-      href: 'https://www.google.com/webhp#newwindow=1&safe=strict&q=site:https://blog.lancelou.me',
+      href: 'https://www.google.com/webhp#newwindow=1&safe=strict&q=site:https://lancelou.com',
     }
   ];
   weiboUrl && mediaConfList.unshift({

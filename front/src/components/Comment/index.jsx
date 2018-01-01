@@ -29,6 +29,7 @@ class Comment extends React.Component {
     const scriptTag = d.createElement('script');
     const image = new window.Image();
     let timer = null;
+    scriptTag.defer = 'defer';
 
     if (this.state.isClient || window.disqus_config) {
       return;

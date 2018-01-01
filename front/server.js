@@ -58,6 +58,8 @@ const resolve = file => path.resolve(__dirname, file);
 // inline css cache in memory
 const inline = isProd ? fs.readFileSync(resolve('./dist/styles.css'), 'utf-8') : '';
 
+let log = null;
+
 // dist中的打包输出文件使用内存缓存
 const chunkObj = {};
 if (isProd) {
@@ -65,6 +67,7 @@ if (isProd) {
     appenders: { ssrServer: { type: 'file', filename: 'error.log' } },
     categories: { default: { appenders: ['ssrServer'], level: 'error' } }
   });
+  log = log4js.getLogger('ssrServer');
   const fileArr = fs.readdirSync(resolve('./dist'));
   for (let i = 0, len = fileArr.length; i < len; i += 1) {
     const fileName = fileArr[i];
@@ -74,9 +77,11 @@ if (isProd) {
       chunkObj[fileName] = input;
     }
   }
+} else {
+  log = log4js.getLogger('ssrServer');
+  log.level = 'debug';
 }
 
-const log = log4js.getLogger('ssrServer');
 
 /**
  * 区分开发和生产环境的主要目的在于:

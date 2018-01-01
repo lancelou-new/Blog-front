@@ -5,6 +5,7 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // Extract text from bundle into a file: 进行代码分离
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 const { baseConfig, baseCssExtConf } = require('./webpack.base.config');
@@ -30,13 +31,17 @@ let config = Object.assign({}, baseConfig, {
     new HTMLPlugin({
       template: 'src/index.template.html',
     }),
+    new UglifyJSPlugin(),
   ]),
 });
 
 if (process.env.NODE_ENV === 'production') {
   Array.prototype.push.apply(config.module.rules, baseCssExtConf(true));
 
-  config.plugins.push(new ExtractTextPlugin('styles.css'));
+  config.plugins.push(new ExtractTextPlugin({
+    filename: 'styles.css',
+    allChunks: true,
+  }));
 
   // minify JS
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
