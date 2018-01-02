@@ -22,6 +22,8 @@ const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const config = require('./config');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const disqusProyMiddleware = {};
 const commentExtractRegexp =
 /[\W\w]*<script type="text\/json" id="disqus-threadData">([\w\W]*?)<\/script>([\W\w])*/;
@@ -106,23 +108,27 @@ disqusProyMiddleware.comments = (req, res) => {
   };
 
   setCsrfCookie(req, res, queryParams.title, 0);
-  mockFromLocal(req, res);
 
-  // proxyRequest(options, (error, response, html) => {
-  //   res.type('json');
-  //   let resText = '';
-  //   if (error) {
-  //     res.status(500).json({ code: -1 }).end();
-  //     return;
-  //   }
-  //   if (commentExtractRegexp.test(html)) {
-  //     resText = html.replace(commentExtractRegexp, '$1');
-  //   } else {
-  //     resText = JSON.stringify({ code: -1 });
-  //   }
-  //   setCsrfCookie(req, res, queryParams.title, 0);
-  //   res.end(resText);
-  // });
+  if (!isProd) {
+    mockFromLocal(req, res);
+    return;
+  }
+
+  proxyRequest(options, (error, response, html) => {
+    res.type('json');
+    let resText = '';
+    if (error) {
+      res.status(500).json({ code: -1 }).end();
+      return;
+    }
+    if (commentExtractRegexp.test(html)) {
+      resText = html.replace(commentExtractRegexp, '$1');
+    } else {
+      resText = JSON.stringify({ code: -1 });
+    }
+    setCsrfCookie(req, res, queryParams.title, 0);
+    res.end(resText);
+  });
 };
 
 /**
@@ -144,8 +150,8 @@ disqusProyMiddleware.comments = (req, res) => {
  */
 disqusProyMiddleware.post = (req, res) => {
   const body = req.body;
-  const title = body.title;
-  let postNum = 0;
+  // const title = body.title;
+  // let postNum = 0;
 
   delete body.title;
 
@@ -170,24 +176,27 @@ disqusProyMiddleware.post = (req, res) => {
     json: true,
   };
 
-  mockFromLocal(req, res);
+  if (!isProd) {
+    mockFromLocal(req, res);
+    return;
+  }
 
-  // proxyRequest(options, (error, response, bodyPost) => {
-  //   res.type('json');
-  //   if (error) {
-  //     // setCsrfCookie(req, res, title, postNum - 1);
-  //     res.status(500).end(error);
-  //     return;
-  //   }
+  proxyRequest(options, (error, response, bodyPost) => {
+    res.type('json');
+    if (error) {
+      // setCsrfCookie(req, res, title, postNum - 1);
+      res.status(500).end(error);
+      return;
+    }
 
-  //   const postId = bodyPost.response.id;
-  //   // 创建匿名post成功，进行approve
-  //   approvePost(postId).then((data) => {
-  //     res.json(data).end();
-  //   }).catch((err) => {
-  //     res.status(500).end(err);
-  //   });
-  // });
+    const postId = bodyPost.response.id;
+    // 创建匿名post成功，进行approve
+    approvePost(postId).then((data) => {
+      res.json(data).end();
+    }).catch((err) => {
+      res.status(500).end(err);
+    });
+  });
 };
 
 module.exports = disqusProyMiddleware;
