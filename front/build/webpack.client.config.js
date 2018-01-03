@@ -36,6 +36,11 @@ let config = Object.assign({}, baseConfig, {
 });
 
 if (process.env.NODE_ENV === 'production') {
+  config.profile = true;
+  config.externals = {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  };
   Array.prototype.push.apply(config.module.rules, baseCssExtConf(true));
 
   config.plugins.push(new ExtractTextPlugin({

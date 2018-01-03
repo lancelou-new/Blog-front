@@ -58,11 +58,21 @@ const createStoreAndLoadData = (req, store) => {
 };
 
 /**
+ * generateCdnLibScriptTag:
+ *  生成未打包进app.js，需要额外CDN加载的文件(主要是lib相关)
+ */
+const generateCdnLibScriptTag = () => {
+  const cdnLibs = [
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js" crossorigin="anonymous"></script>',
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js" crossorigin="anonymous"></script>'
+  ];
+  return cdnLibs.join('');
+};
+
+/**
  * 服务端入口工厂 -> 传入运行时配置参数，生成这个渲染中间件
  * @param {*} options 配置对象
- *
  */
-
 const serverEntryMiddlewareCreator = ({
   html, log, isProd, chunkObj,
 }) => (req, res, next) => {
@@ -100,6 +110,7 @@ const serverEntryMiddlewareCreator = ({
     // stream end
     renderStream.on('end', () => {
       const state = store.getState();
+      const cdnLibScript = generateCdnLibScriptTag();
       res.write(`<script>window.__INITIAL_STATE__=${
         JSON.stringify(state)
       }</script>`);
@@ -107,7 +118,7 @@ const serverEntryMiddlewareCreator = ({
       if (isProd && preLoadComponent) {
         for (const key in chunkObj) {
           if (key.split('.')[0] === preLoadComponent.chunkName) {
-            const chunk = `<script type="text/javascript" charset="utf-8">${chunkObj[key]}</script></body>`;
+            const chunk = `${cdnLibScript}<script type="text/javascript" charset="utf-8">${chunkObj[key]}</script></body>`;
             tail = tail.replace('</body>', chunk);
             break;
           }

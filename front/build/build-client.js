@@ -8,6 +8,7 @@ require('shelljs/global');
 env.NODE_ENV = 'production';
 
 const path = require('path');
+const fs = require('fs');
 const config = require('../config');
 const ora = require('ora');
 const webpack = require('webpack');
@@ -19,13 +20,13 @@ spinner.start();
 const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory);
 const dist = path.join(__dirname, '../dist');
 
+const statsPath = path.resolve(__dirname, '../dist/stats.json');
 
 rm('-rf', dist);
 mkdir('-p', dist);
 rm('-rf', assetsPath);
 mkdir('-p', assetsPath);
 cp('-R', 'static/*', assetsPath);
-
 webpack(webpackConfig, (err, stats) => {
   spinner.stop();
   if (err) throw err;
@@ -36,4 +37,5 @@ webpack(webpackConfig, (err, stats) => {
     chunks: false,
     chunkModules: false,
   })}\n`);
+  fs.writeFileSync(statsPath, JSON.stringify(stats.toJson()));
 });
