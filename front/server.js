@@ -64,8 +64,14 @@ let log = null;
 const chunkObj = {};
 if (isProd) {
   log4js.configure({
-    appenders: { ssrServer: { type: 'file', filename: 'error.log' } },
-    categories: { default: { appenders: ['ssrServer'], level: 'error' } }
+    appenders: {
+      errLog: { type: 'file', filename: 'ssr.error.log' },
+      infoLog: { type: 'file', filename: 'ssr.info.log' },
+    },
+    categories: {
+      default: { appenders: ['errLog'], level: 'error' },
+      performanceTrace: { appenders: ['infoLog'], level: 'info' },
+    }
   });
   log = log4js.getLogger('ssrServer');
   const fileArr = fs.readdirSync(resolve('./dist'));
@@ -215,7 +221,7 @@ config.flushOption().then(() => {
 
     // 调用SSR相关中间件
     ssrRenderMiddleware({
-      html, log, isProd, chunkObj,
+      html, log, isProd, chunkObj, log4js
     })(req, res, next);
   });
 

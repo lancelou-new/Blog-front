@@ -74,14 +74,15 @@ const generateCdnLibScriptTag = () => {
  * @param {*} options 配置对象
  */
 const serverEntryMiddlewareCreator = ({
-  html, log, isProd, chunkObj,
+  html, log, isProd, chunkObj, log4js
 }) => (req, res, next) => {
+  const trackLog = log4js.getLogger('performanceTrace');
   const store = configureStore();
-  const s = Date.now();
+  const s = process.uptime();
   createStoreAndLoadData(req, store).then((preLoadComponent) => {
-    log.debug(`lancelog-> Server Data Fetch: ${Date.now() - s}ms`);
+    trackLog.info(`Server Data Fetch Cost: ${(process.uptime() - s).toFixed(4)}s`);
 
-    const ssrStartS = Date.now();
+    const ssrStartS = process.uptime();
     const serverRouteConf = {
       url: req.url
     };
@@ -91,7 +92,7 @@ const serverEntryMiddlewareCreator = ({
 
     // FB data Trigger
     renderStream.once('data', () => {
-      log.debug(`lancelog-> SSR to First Byte: ${Date.now() - ssrStartS}ms`);
+      trackLog.info(`SSR to First Byte(render) Cost: ${(process.uptime() - ssrStartS).toFixed(4)}s`);
       const { title, link, meta } = helmet;
       const titleText = title.toString();
       const metaData = `${titleText}${meta.toString()}${link.toString()}`;
@@ -99,7 +100,6 @@ const serverEntryMiddlewareCreator = ({
 
       const chunk = html.head.replace('<title></title>', metaData);
       res.write(chunk);
-      log.debug('lancelog-> First byte get');
     });
 
     // stream data come
@@ -111,21 +111,21 @@ const serverEntryMiddlewareCreator = ({
     renderStream.on('end', () => {
       const state = store.getState();
       const cdnLibScript = generateCdnLibScriptTag();
-      res.write(`<script>window.__INITIAL_STATE__=${
+      res.write(`${cdnLibScript}<script>window.__INITIAL_STATE__=${
         JSON.stringify(state)
       }</script>`);
       let tail = html.tail;
       if (isProd && preLoadComponent) {
         for (const key in chunkObj) {
           if (key.split('.')[0] === preLoadComponent.chunkName) {
-            const chunk = `${cdnLibScript}<script type="text/javascript" charset="utf-8">${chunkObj[key]}</script></body>`;
+            const chunk = `<script type="text/javascript" charset="utf-8">${chunkObj[key]}</script></body>`;
             tail = tail.replace('</body>', chunk);
             break;
           }
         }
       }
       res.end(tail);
-      log.debug(`whole request: ${Date.now() - s}ms`);
+      trackLog.info(`whole request Cost: ${(process.uptime() - s).toFixed(4)}s`);
     });
 
     renderStream.on('error', (err) => {
