@@ -101,7 +101,7 @@ function flushHtml(template) {
   return {
     head: template.match(/([\w\W]*<div id="root">)[\w\W]*/)[1].replace('<link href="/dist/styles.css" rel="stylesheet">', style),
     tail: template.match(/[\w\W]*<div id="root">([\w\W]*)/)[1],
-    root: '<div id="root">此处做root的划分吧，不然所有添加的都会被react Dom清掉</root>',
+    root: '<div id="root">此处做root的划分吧，不然所有添加的都会被react Dom清掉</div>',
     origin: template,
   };
 }
@@ -162,6 +162,9 @@ config.flushOption().then(() => {
       serverBundleUpdate: (serverBundleStr, outputPath) => {
         ssrRenderMiddleware = (requireFromFileString(serverBundleStr, outputPath)).default;
       },
+      chunkObjUpdate: (newChunkObj) => {
+        Object.assign(chunkObj, newChunkObj);
+      }
     }); // 连接上webpack Hot Middleware， 进行打包及相关的热更新服务
   }
 
@@ -191,13 +194,13 @@ config.flushOption().then(() => {
   app.post('/disqus/post.json', disqusProyMiddleware.post);
 
   const staticServe = (reqPath, cache) => express.static(resolve(reqPath), {
-    maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0,
+    maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0,
     fallthrough: false,
   });
 
   // app.use('/service-worker.js', staticServe('./dist/service-worker.js'));
-  app.use('/dist', staticServe('./dist'));
-  app.use('/static', staticServe('./dist/static'));
+  app.use('/dist', staticServe('./dist', true));
+  app.use('/static', staticServe('./dist/static', true));
   app.get('/favicon.ico', faviconMiddleware(config.favicon));
 
   // seo match

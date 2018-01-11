@@ -28,14 +28,15 @@
  */
 import React from 'react';
 import Helmet from 'react-helmet';
-import { renderToNodeStream } from 'react-dom/server';
+import { renderToNodeStream, renderToStaticMarkup } from 'react-dom/server';
 import { matchPath } from 'react-router-dom';
 import App from './components/app';
 import configureStore from './store';
 import { mustSSRLoad, routerConfig } from './routes/index';
 import generateParams from './action/requestParamsFactory';
 
-// const titleReg = /<.*?>(.+?)<.*?>/;
+const devOutputPath = '/dist/';
+let headInfoMCache = {};
 
 const createStoreAndLoadData = (req, store) => {
   let needLoads = [];
@@ -69,6 +70,23 @@ const generateCdnLibScriptTag = () => {
   return cdnLibs.join('');
 };
 
+const generateHelmet = (store, serverRouteConf) => {
+  const { url } = serverRouteConf;
+  const curTime = new Date().getTime();
+  if (!headInfoMCache.__cacheExpires__ || curTime < headInfoMCache.__cacheExpires__) {
+    headInfoMCache.__cacheExpires__ = curTime + 86400000;
+    headInfoMCache = {};
+  }
+  if (headInfoMCache[url]) {
+    return headInfoMCache[url];
+  }
+  renderToStaticMarkup(<App store={store} serverRouteConf={serverRouteConf} />);
+  const helmet = Helmet.renderStatic();
+  const { title, link, meta } = helmet;
+  headInfoMCache[url] = { title, link, meta };
+  return helmet;
+};
+
 /**
  * 服务端入口工厂 -> 传入运行时配置参数，生成这个渲染中间件
  * @param {*} options 配置对象
@@ -86,9 +104,10 @@ const serverEntryMiddlewareCreator = ({
     const serverRouteConf = {
       url: req.url
     };
+    const helmet = generateHelmet(store, serverRouteConf);
+
     const renderStream =
       renderToNodeStream(<App store={store} serverRouteConf={serverRouteConf} />);
-    const helmet = Helmet.renderStatic();
 
     // FB data Trigger
     renderStream.once('data', () => {
@@ -110,15 +129,22 @@ const serverEntryMiddlewareCreator = ({
     // stream end
     renderStream.on('end', () => {
       const state = store.getState();
-      const cdnLibScript = generateCdnLibScriptTag();
-      res.write(`${cdnLibScript}<script>window.__INITIAL_STATE__=${
+      const cdnLibScript = isProd ? generateCdnLibScriptTag() : '';
+
+      // externals出去的lib与state
+      const libAndState = `</div>${cdnLibScript}<script>window.__INITIAL_STATE__=${
         JSON.stringify(state)
-      }</script>`);
+      }</script>`;
       let tail = html.tail;
-      if (isProd && preLoadComponent) {
+      tail = tail.replace('</div>', libAndState);
+
+      // 这边如果也要做到dev模式下的component preload，我们还是需要
+      // 从MFS中取那些chunk
+      if (preLoadComponent) {
         for (const key in chunkObj) {
           if (key.split('.')[0] === preLoadComponent.chunkName) {
-            const chunk = `<script type="text/javascript" charset="utf-8">${chunkObj[key]}</script></body>`;
+            const chunkContent = chunkObj[key].replace('sourceMappingURL=', `sourceMappingURL=${devOutputPath}`);
+            const chunk = `<script type="text/javascript" charset="utf-8">${chunkContent}</script></body>`;
             tail = tail.replace('</body>', chunk);
             break;
           }

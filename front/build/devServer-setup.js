@@ -18,6 +18,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const MemoryFS = require('memory-fs');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -34,11 +35,28 @@ clientWebpackConfig.entry = ['react-hot-loader/patch', 'webpack-hot-middleware/c
 
 // clientWebpackConfig.output.filename = '[name].js'; // 删除文件不加hash，确定文件名
 
-// Use NoErrorsPlugin for webpack 1.x
 clientWebpackConfig.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
 );
+
+const getChunkObjFromMfs = (MFs) => {
+  const chunkObj = {};
+  const assetsRoot = config.dev.assetsRoot;
+  if (!fs.existsSync(assetsRoot)) {
+    return chunkObj;
+  }
+  const fileArr = MFs.readdirSync(assetsRoot);
+  for (let i = 0, len = fileArr.length; i < len; i += 1) {
+    const fileName = fileArr[i];
+    const arr = fileName.split('.');
+    if (arr.length === 3 && arr[0] !== 'app') {
+      const input = MFs.readFileSync(path.join(assetsRoot, `${fileName}`), 'utf-8');
+      chunkObj[fileName] = input;
+    }
+  }
+  return chunkObj;
+};
 
 module.exports = function devWebpackMiddleware(app, options) {
   /**
@@ -55,12 +73,16 @@ module.exports = function devWebpackMiddleware(app, options) {
   clientCompiler.plugin('done', () => {
     // Hack to add a mock HMR json file to the in-memory filesystem.
     // 参照https://github.com/webpack/webpack-dev-middleware/blob/master/test/Server.test.js line40
-    const fs = devMiddlewareInstance.fileSystem;
+    const wfs = devMiddlewareInstance.fileSystem;
     const filepath = path.join(config.dev.assetsRoot, 'index.html');
-    if (fs.existsSync(filepath)) {
-      const html = fs.readFileSync(filepath, 'utf-8');
+    let chunkObj = null;
+
+    if (wfs.existsSync(filepath)) {
+      const html = wfs.readFileSync(filepath, 'utf-8');
       options.indexHtmlUpdate(html);
     }
+    chunkObj = getChunkObjFromMfs(wfs);
+    options.chunkObjUpdate(chunkObj);
   });
   app.use(webpackHotMiddleware(clientCompiler));
 

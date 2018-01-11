@@ -5,6 +5,8 @@ module.exports = {
     "document": true,
     "foo": true,
     "window": true,
+    '__webpack_require__': true,
+    '__webpack_modules__': true,
     "gapi": true
   },
   "rules": {

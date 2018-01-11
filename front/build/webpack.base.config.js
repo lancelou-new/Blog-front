@@ -20,7 +20,7 @@ const baseConfig = {
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
+    publicPath: isProd ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
     filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
     chunkFilename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
   },
@@ -52,7 +52,7 @@ const baseConfig = {
     }],
   },
   performance: {
-    hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
+    hints: isProd ? 'warning' : false,
   },
   plugins: [],
 };

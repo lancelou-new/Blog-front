@@ -8,8 +8,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store';
 import App from './components/app';
 
-const isProd = process.env.NODE_ENV === 'production';
-const callback = isProd ? setTimeout : func => func();
+// const isProd = process.env.NODE_ENV === 'production';
+const callback = setTimeout;
 
 const preloadedState = window.__INITIAL_STATE__; // 服务端回传的init state -> store
 const store = configureStore(preloadedState);
