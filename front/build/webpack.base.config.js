@@ -26,6 +26,9 @@ const baseConfig = {
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.scss', '.css'],
+    alias: {
+      Static: path.resolve(__dirname, '../static'),
+    },
   },
   module: {
     noParse: /es6-promise\.js$/, // avoid webpack shimming process
@@ -39,7 +42,7 @@ const baseConfig = {
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: 'img/[name].[hash].[ext]',
+        name: 'static/[name].[hash].[ext]',
       },
     },
     {
@@ -47,7 +50,7 @@ const baseConfig = {
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: 'fonts/[name].[hash].[ext]',
+        name: 'static/fonts/[name].[hash].[ext]',
       },
     }],
   },
