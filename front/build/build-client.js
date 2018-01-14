@@ -9,9 +9,12 @@ env.NODE_ENV = 'production';
 
 const path = require('path');
 const fs = require('fs');
-const config = require('../config');
+const argv = require('minimist')(process.argv.slice(2));
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ora = require('ora');
+const chalk = require('chalk');
 const webpack = require('webpack');
+const config = require('../config');
 const webpackConfig = require('./webpack.client.config');
 
 const spinner = ora('building for production...');
@@ -21,6 +24,11 @@ const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDire
 const dist = path.join(__dirname, '../dist');
 
 const statsPath = path.resolve(__dirname, '../dist/stats.json');
+
+if (argv.bundleAna) {
+  // bundle size analysis
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+}
 
 rm('-rf', dist);
 mkdir('-p', dist);
@@ -37,5 +45,10 @@ webpack(webpackConfig, (err, stats) => {
     chunks: false,
     chunkModules: false,
   })}\n`);
-  fs.writeFileSync(statsPath, JSON.stringify(stats.toJson()));
+
+  if (argv.bundleAna) {
+    fs.writeFileSync(statsPath, JSON.stringify(stats.toJson()));
+    console.log(chalk.white('State.json: '), chalk.gray(statsPath));
+    console.log(chalk.white('Online bundle size analysis: '), chalk.gray.underline('http://alexkuz.github.io/webpack-chart/'), '\n');
+  }
 });
