@@ -43,7 +43,10 @@ class CustomComment extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.posts && this.state.posts === nextState.posts) {
+    // check disqus support result
+    if (this.props.isSupportDisqus === nextProps.isSupportDisqus &&
+      this.state.posts &&
+      this.state.posts === nextState.posts) {
       return false;
     }
     return true;
