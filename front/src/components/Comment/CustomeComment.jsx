@@ -1,4 +1,4 @@
-/* eslint no-plusplus: 0, no-loop-func: 0 */
+/* eslint no-plusplus: 0, no-loop-func: 0, react/no-unused-prop-types: 0 */
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -12,7 +12,9 @@ let MAX_COMMENT_DEPTH = 4;
 
 class CustomComment extends React.Component {
   static propTypes = {
-    isSupportDisqus: PropTypes.bool
+    isSupportDisqus: PropTypes.bool,
+    url: PropTypes.string,
+    title: PropTypes.string,
   };
 
   constructor(props) {
@@ -23,15 +25,20 @@ class CustomComment extends React.Component {
       thread: null,
       total: 0,
     };
+
+    // init
+    isMobile = device.mobile;
+    isMobile && (MAX_COMMENT_DEPTH = 2);
+  }
+
+  componentWillMount() {
+    // 初始化
+    this.fetchAllComment(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.isSupportDisqus !==
-        nextProps.isSupportDisqus && nextProps.isSupportDisqus === false) {
-      isMobile = device.mobile;
-      isMobile && (MAX_COMMENT_DEPTH = 2);
-      // 此处能保证代码只会在客服端执行
-      this.fetchAllComment();
+    if (nextProps.url !== this.props.url) {
+      this.fetchAllComment(nextProps);
     }
   }
 
@@ -56,17 +63,17 @@ class CustomComment extends React.Component {
     });
   }
 
-  fetchAllComment = () => {
+  fetchAllComment = (props) => {
     const params = {
-      postUrl: window.location.href,
-      title: window.document.title,
+      postUrl: props.url,
+      title: props.title,
     };
     // const params = {
     //   postUrl: 'https://www.lancelou.com/2017/04/25/react-redux-lession-series/',
     //   title: '"跟着Dan Abramov一起学Redux系列 - 娄聪的博客 | Lance Blog"',
     // };
     axios.get('/disqus/comments.json', { params }).then(this.onInitDataReady).catch((err) => {
-      console.log(err);
+      console.error(err);
     });
   }
 
@@ -162,110 +169,5 @@ class CustomComment extends React.Component {
     );
   }
 }
-
-// /**
-//  * 用户输入区域无状态组件
-//  * @param {*} props
-//  */
-// const UserInArea = (props) => {
-//   const userInRefs = {};
-//   const handlerPost = () => {
-//     const data = {};
-//     const verifyOk = Object.keys(userInRefs).every((ref) => {
-//       const value = userInRefs[ref].value;
-//       if (!value || !value.trim()) {
-//         return false;
-//       }
-//       data[ref] = value;
-//       return true;
-//     });
-//     if (!verifyOk || !EmailReg.test(userInRefs.author_email.value)) {
-//       return;
-//     }
-
-//     props.handlerSubmitPost(data);
-//   };
-
-//   return (
-//     <div className={Style.cusDisqus_input}>
-//       <div className={Style.cusDisqus_col_Icon} />
-//       <form className={Style.cusDisqus_col_In}>
-//         <div style={{ padding: '0 20px' }}>
-//           <textarea ref={(ref) => { userInRefs.message = ref; }} required />
-//           <div className={Style.cusDisqus_author}>
-//             <span>请输入您的昵称与邮箱地址(将转发至Disqus.com)</span><br />
-//             <input type="text" ref={(ref) => { userInRefs.author_name = ref; }} name="author_name" placeholder="昵称(必填)" required /><br />
-//             <input type="email" ref={(ref) => { userInRefs.author_email = ref; }} name="author_email" placeholder="邮箱(必填)" required /><br />
-//           </div>
-//           <button type="submit" onClick={handlerPost}>发表</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// UserInArea.propTypes = {
-//   handlerSubmitPost: PropTypes.func
-// };
-
-// const PostList = (props) => {
-//   const { posts } = props;
-//   return (
-//     <ul className={Style.cusDisqus_postListContainer}>
-//       {
-//         posts.map(post => (
-//           <Post post={post} key={post.id} />
-//         ))
-//       }
-//     </ul>
-//   );
-// };
-
-// PostList.propTypes = {
-//   posts: PropTypes.arrayOf(PropTypes.shape({
-//     parent: PropTypes.number,
-//     message: PropTypes.string,
-//   })),
-// };
-
-// const Post = (props) => {
-//   const {
-//     message, author, createdAt, isDeleted, children
-//   } = props.post;
-//   const authorAvator = isMobile ? author.avatar.small.cache
-//     : author.avatar.large.cache;
-
-//   return (
-//     <li className={Style.cusDisqus_post}>
-//       <div className={Style.cusDisqus_postContent}>
-//         <div className={Style.cusDisqus_post_colContent}>
-//           <div className="g_wid_100per">
-//             <a href={author.profileUrl} style={{ fontWeight: 500 }}>{author.name}</a> &nbsp;•&nbsp;
-//             <span>{dateUtils.howLongBefore(new Date(createdAt), curReferTime)}</span>
-//           </div>
-//           <div className="g_wid_100per" dangerouslySetInnerHTML={(() => ({ __html: message }))()} />
-//           <div className="g_wid_100per" />
-//         </div>
-//         <div className={Style.cusDisqus_post_colIcon}>
-//           {
-//             author.isAnonymous ?
-//               <img src={authorAvator} alt="头像" /> :
-//               <a href={author.profileUrl}>
-//                 <img src={authorAvator} alt="头像" />
-//               </a>
-//           }
-//         </div>
-//       </div>
-//       { children && <PostList posts={children} />}
-//     </li>
-//   );
-// };
-
-// Post.propTypes = {
-//   post: PropTypes.shape({
-//     parent: PropTypes.number,
-//     message: PropTypes.string,
-//   }),
-// };
 
 export default CustomComment;

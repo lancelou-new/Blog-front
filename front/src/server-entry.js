@@ -140,6 +140,8 @@ const serverEntryMiddlewareCreator = ({
 
       // 这边如果也要做到dev模式下的component preload，我们还是需要
       // 从MFS中取那些chunk
+      console.log('preLoadComponent--->>>', preLoadComponent.chunkName);
+      console.log(chunkObj[preLoadComponent.chunkName]);
       if (preLoadComponent) {
         for (const key in chunkObj) {
           if (key.split('.')[0] === preLoadComponent.chunkName) {

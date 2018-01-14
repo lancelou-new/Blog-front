@@ -27,10 +27,19 @@ class Page extends React.Component {
     EventEmit.emit('backToTop');
   }
 
+  componentDidUpdate() {
+    EventEmit.emit('backToTop');
+  }
+
   render() {
     const {
       blog, page, next, prev, match, siteTitle
     } = this.props;
+    const commentConfig = {
+      identifier: window && window.location.href,
+      url: window && window.location.href,
+      title: window && window.document.href,
+    };
     const content = match.path === '/post/:postName' ? blog : page;
     const is404 = Object.keys(content).length === 0;
     return is404 ? <Page404 /> :
@@ -40,7 +49,7 @@ class Page extends React.Component {
       </Helmet>
       <PageArticle content={content} />
       {content.type !== 'page' && <Pagination next={next} prev={prev} />}
-      <Comment />
+      <Comment {...commentConfig} />
     </div>;
   }
 }

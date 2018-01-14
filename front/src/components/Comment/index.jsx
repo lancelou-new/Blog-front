@@ -9,9 +9,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CustomComment from './CustomeComment';
 
+let IsClient = false;
+let IsSupportDisqus = true;
+
 class Comment extends React.Component {
   static propTypes = {
     commentName: PropTypes.string,
+    url: PropTypes.string,
+    identifier: PropTypes.string,
+    title: PropTypes.string
   };
 
   constructor(props) {
@@ -19,8 +25,8 @@ class Comment extends React.Component {
 
     // 客服端标记初始化为false
     this.state = {
-      isClient: false,
-      isSupportDisqus: true,
+      isSupportDisqus: IsSupportDisqus,
+      isClient: IsClient,
     };
   }
 
@@ -29,30 +35,31 @@ class Comment extends React.Component {
     const scriptTag = d.createElement('script');
     const image = new window.Image();
     let timer = null;
-    scriptTag.defer = 'defer';
+    scriptTag.src = 'https://lanceloublog.disqus.com/embed.js';
+    scriptTag.async = 'async';
 
-    if (this.state.isClient || window.disqus_config) {
+    if (IsClient || window.disqus_config) {
+      // route change trigger(component unmount mount)
+      this.state.isSupportDisqus && this.resetDisqus();
       return;
     }
+
+    // client
+    IsClient = true;
+    this.setState({
+      isClient: true,
+    });
 
     window.disqus_config = () => {
       this.page.url = window.location.href;
       this.page.identifier = window.location.href;
     };
 
-    scriptTag.src = 'https://lanceloublog.disqus.com/embed.js';
-    scriptTag.async = 'async';
-
     image.onload = () => {
       if (!timer) { return; }
 
       clearTimeout(timer);
       timer = null;
-
-      this.setState({
-        isClient: true,
-        isSupportDisqus: true,
-      });
       d.body.appendChild(scriptTag);
     };
     image.onerror = () => {
@@ -62,34 +69,60 @@ class Comment extends React.Component {
       timer = null;
 
       this.setState({
-        isClient: true,
         isSupportDisqus: false,
       });
+      IsSupportDisqus = false;
     };
 
-    // 超时时间定义
+    // timeout set
     timer = setTimeout(() => {
       clearTimeout(timer);
       timer = null;
       this.setState({
-        isClient: true,
         isSupportDisqus: false,
       });
+      IsSupportDisqus = false;
       image.src = '/';
     }, 3000);
 
     image.src = `https://disqus.com/favicon.ico?${new Date().getTime()}`;
   }
 
+  componentDidUpdate(prevProps) {
+    // route change but component not change and props change(need to reset)
+    const curProps = this.props;
+    if (!prevProps || !curProps || prevProps.url === curProps.url) {
+      return;
+    }
+    this.state.isSupportDisqus && this.resetDisqus();
+  }
+
+  resetDisqus = () => {
+    const { identifier, url } = this.props;
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config() {
+          this.page.url = url;
+          this.page.identifier = identifier;
+        }
+      });
+    }
+  }
+
   render() {
-    return (
+    const { url, title } = this.props;
+    const { isClient } = this.state;
+    return isClient ? (
       <div id="disqus_thread">
         <CustomComment
           isSupportDisqus={this.state.isSupportDisqus}
           commentName={this.props.commentName}
+          url={url}
+          title={title}
         />
       </div>
-    );
+    ) : null;
   }
 }
 

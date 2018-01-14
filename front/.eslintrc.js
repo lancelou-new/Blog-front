@@ -7,6 +7,7 @@ module.exports = {
     "window": true,
     '__webpack_require__': true,
     '__webpack_modules__': true,
+    'DISQUS': true,
     "gapi": true
   },
   "rules": {

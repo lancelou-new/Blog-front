@@ -18,7 +18,6 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const fs = require('fs');
 const MemoryFS = require('memory-fs');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -42,10 +41,7 @@ clientWebpackConfig.plugins.push(
 
 const getChunkObjFromMfs = (MFs) => {
   const chunkObj = {};
-  const assetsRoot = config.dev.assetsRoot;
-  if (!fs.existsSync(assetsRoot)) {
-    return chunkObj;
-  }
+  const assetsRoot = clientWebpackConfig.output.path;
   const fileArr = MFs.readdirSync(assetsRoot);
   for (let i = 0, len = fileArr.length; i < len; i += 1) {
     const fileName = fileArr[i];
