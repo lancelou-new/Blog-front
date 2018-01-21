@@ -34,7 +34,6 @@
 
 const proxyRequest = require('request');
 const log4js = require('log4js');
-const cookieParser = require('cookie-parser');
 const uuidv4 = require('uuid/v4');
 const { gaTrackId } = require('./configVo');
 
@@ -45,7 +44,10 @@ const log = log4js.getLogger('ssrServer');
 /**
  * 通知Google Analytics
  */
-const sendToGA = (queryParams, clientIp, cId) => {
+const sendToGA = (req, cId) => {
+  const queryParams = req.query;
+  const clientIp = req.ip;
+  const userAgent = req.get('user-agent');
   const body = {
     tid: gaTrackId,
     v: 1,
@@ -56,6 +58,9 @@ const sendToGA = (queryParams, clientIp, cId) => {
     method: 'POST',
     uri: 'https://www.google-analytics.com/collect',
     body: Object.assign({}, queryParams, body),
+    headers: {
+      'User-Agent': userAgent,
+    },
     json: true
   };
   proxyRequest(options, (error) => {
@@ -77,7 +82,7 @@ const gaProxyMiddleWare = (req, res) => {
 
   console.log(clientIp);
 
-  sendToGA(req.query, clientIp, gaCId);
+  sendToGA(req, gaCId);
 
   res.status(204).end();
 };
