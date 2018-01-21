@@ -2,7 +2,7 @@
   "apps": [{
     "name": "blogfrontend",
     "script": "front/production.js",
-    "cwd": "",
+    "cwd": "front/",
     "exec_mode": "cluster",
     "instances": 0,
     "max_memory_restart": "256M",

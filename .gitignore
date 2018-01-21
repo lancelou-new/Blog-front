@@ -61,5 +61,6 @@ typings/
 # custome
 dist/
 schedule.md
-front/server/config.js
-front/server/db.config.js
+front/server/configVo.js
+front/server/config/db.config.js
+
