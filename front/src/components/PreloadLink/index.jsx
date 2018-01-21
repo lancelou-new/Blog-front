@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import {
   Link,
 } from 'react-router-dom';
+import EventEmit from '../../utils/eventCenter';
 import Action from '../../action';
 
 class PreloaderLink extends Component {
@@ -35,7 +36,13 @@ class PreloaderLink extends Component {
     } = this.props;
     startLoading();
     this.props.onPreload().then(() => {
+      const from = {
+        title: window.document.title,
+        path: window.location.pathname,
+        href: window.location.href
+      };
       stopLoading();
+      EventEmit.emit('reactRouter-routeChange', from);
       if (replace) {
         this.context.router.history.replace(to);
       } else {

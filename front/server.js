@@ -32,7 +32,7 @@
  */
 
 const isProd = process.env.NODE_ENV === 'production';
-const config = require('./server/config');
+const config = require('./server/configVo');
 const log4js = require('log4js');
 const fs = require('fs');
 const path = require('path');
@@ -41,11 +41,11 @@ const bodyParser = require('body-parser');
 const proxyRequest = require('request');
 const request = require('./server/server-axios');
 const schedule = require('node-schedule');
-// const { renderToString }
 
 const faviconMiddleware = require('./middleware/favicon');
 const devWebpackMiddleware = require('./build/devServer-setup');
 const disqusProyMiddleware = require('./server/disqusProxy');
+const gaMiddleware = require('./server/gaProxy');
 
 // seo with robots and sitemap
 const getRobotsFromConfig = require('./server/robots.js');
@@ -63,16 +63,6 @@ let log = null;
 // dist中的打包输出文件使用内存缓存
 const chunkObj = {};
 if (isProd) {
-  log4js.configure({
-    appenders: {
-      errLog: { type: 'file', filename: 'ssr.error.log' },
-      infoLog: { type: 'file', filename: 'ssr.info.log' },
-    },
-    categories: {
-      default: { appenders: ['errLog'], level: 'error' },
-      performanceTrace: { appenders: ['infoLog'], level: 'info' },
-    }
-  });
   log = log4js.getLogger('ssrServer');
   const fileArr = fs.readdirSync(resolve('./dist'));
   for (let i = 0, len = fileArr.length; i < len; i += 1) {
@@ -192,6 +182,7 @@ config.flushOption().then(() => {
 
   app.get('/disqus/comments.json', disqusProyMiddleware.comments);
   app.post('/disqus/post.json', disqusProyMiddleware.post);
+  app.get('/ga', (req, res) => gaMiddleware(req, res));
 
   const staticServe = (reqPath, cache) => express.static(resolve(reqPath), {
     maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0,
@@ -224,13 +215,13 @@ config.flushOption().then(() => {
 
     // 调用SSR相关中间件
     ssrRenderMiddleware({
-      html, log, isProd, chunkObj, log4js
+      html, log, isProd, chunkObj
     })(req, res, next);
   });
 
   const port = config.ssrPort;
   app.listen(port, () => {
-    log.debug(`server started at localhost:${port}`);
+    console.log(`server started at localhost:${port}`);
   });
 }).catch((err) => {
   log.error(err);

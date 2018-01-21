@@ -92,15 +92,11 @@ const generateHelmet = (store, serverRouteConf) => {
  * @param {*} options 配置对象
  */
 const serverEntryMiddlewareCreator = ({
-  html, log, isProd, chunkObj, log4js
+  html, log, isProd, chunkObj
 }) => (req, res, next) => {
-  const trackLog = log4js.getLogger('performanceTrace');
   const store = configureStore();
-  const s = process.uptime();
   createStoreAndLoadData(req, store).then((preLoadComponent) => {
-    trackLog.info(`Server Data Fetch Cost: ${(process.uptime() - s).toFixed(4)}s`);
 
-    const ssrStartS = process.uptime();
     const serverRouteConf = {
       url: req.url
     };
@@ -111,7 +107,6 @@ const serverEntryMiddlewareCreator = ({
 
     // FB data Trigger
     renderStream.once('data', () => {
-      trackLog.info(`SSR to First Byte(render) Cost: ${(process.uptime() - ssrStartS).toFixed(4)}s`);
       const { title, link, meta } = helmet;
       const titleText = title.toString();
       const metaData = `${titleText}${meta.toString()}${link.toString()}`;
@@ -140,8 +135,6 @@ const serverEntryMiddlewareCreator = ({
 
       // 这边如果也要做到dev模式下的component preload，我们还是需要
       // 从MFS中取那些chunk
-      console.log('preLoadComponent--->>>', preLoadComponent.chunkName);
-      console.log(chunkObj[preLoadComponent.chunkName]);
       if (preLoadComponent) {
         for (const key in chunkObj) {
           if (key.split('.')[0] === preLoadComponent.chunkName) {
@@ -153,7 +146,6 @@ const serverEntryMiddlewareCreator = ({
         }
       }
       res.end(tail);
-      trackLog.info(`whole request Cost: ${(process.uptime() - s).toFixed(4)}s`);
     });
 
     renderStream.on('error', (err) => {

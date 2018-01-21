@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
+import GaSubmit from '../GaSubmit';
 import PreLoadLinkWithRouteConf from '../PreloadLink/preLoadLinkWithRouteConf';
 
 const Tag = (props) => {
@@ -14,7 +15,7 @@ const Tag = (props) => {
   const anchors = Object.keys(tags).map(tagName => ({ name: tagName, num: tags[tagName], to: `${baseUrl}${tagName}` }));
   return (
     <article className="post tags">
-      <Helmet>
+      <Helmet defer={false}>
         <title>标签 - {siteTitle}</title>
       </Helmet>
       <h1 className="title">标签</h1>
@@ -46,4 +47,6 @@ const TagWithRedux = connect(
   null
 )(Tag);
 
-export default TagWithRedux;
+const TagWithReduxWithGa = GaSubmit(TagWithRedux);
+
+export default TagWithReduxWithGa;

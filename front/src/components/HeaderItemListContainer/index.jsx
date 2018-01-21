@@ -17,7 +17,7 @@ const HeaderItemListContainer = props => (
       下的文章
     </h1>
     <ItemListContainer withoutPagination />
-    <Helmet>
+    <Helmet defer={false}>
       <title>{props.match.params.tagName} - {props.siteTitle}</title>
     </Helmet>
   </section>

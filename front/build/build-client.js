@@ -5,6 +5,7 @@
 // https://github.com/shelljs/shelljs
 // 客服端打包构建
 require('shelljs/global');
+
 env.NODE_ENV = 'production';
 
 const path = require('path');

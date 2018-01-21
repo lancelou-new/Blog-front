@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import EventEmit from '../../utils/eventCenter';
+import GaSubmit from '../GaSubmit';
 import Item from '../Item';
 import Pagination from './pagination';
 
@@ -33,7 +34,7 @@ class ItemListContainer extends React.Component {
     } = this.props;
     return (
       <section>
-        <Helmet>
+        <Helmet defer={false}>
           <title>首页 - {siteTitle}</title>
         </Helmet>
         {itemList.map(itemVo => (
@@ -69,4 +70,6 @@ const ItemListContainerWithRedux = connect(
   null,
 )(ItemListContainer);
 
-export default ItemListContainerWithRedux;
+const ItemListContainerReduxWithGaSubmit = GaSubmit(ItemListContainerWithRedux);
+
+export default ItemListContainerReduxWithGaSubmit;

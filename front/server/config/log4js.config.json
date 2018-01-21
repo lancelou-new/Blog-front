@@ -1,0 +1,11 @@
+{
+  "pm2": true,
+  "appenders": {
+    "errLog": { "type": "file", "filename": "log/ssr.error.log" },
+    "infoLog": { "type": "file", "filename": "log/ssr.info.log" }
+  },
+  "categories": {
+    "default": { "appenders": ["errLog"], "level": "error" },
+    "performanceTrace": { "appenders": ["infoLog"], "level": "info" }
+  }
+}

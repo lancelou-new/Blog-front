@@ -1,7 +1,7 @@
 /**
  * DB schema
  */
-const config = require('./db.config');
+const config = require('./config/db.config');
 
 const mongoose = require('mongoose');
 const log = require('log4js').getLogger('ssr axios');

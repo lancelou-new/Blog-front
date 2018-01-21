@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import GaSubmit from '../GaSubmit';
 import EventEmit from '../../utils/eventCenter';
 import Page404 from './page404';
 import Pagination from './pagination';
@@ -44,7 +45,7 @@ class Page extends React.Component {
     const is404 = Object.keys(content).length === 0;
     return is404 ? <Page404 /> :
     <div>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{content.title} - {siteTitle}</title>
       </Helmet>
       <PageArticle content={content} />
@@ -103,4 +104,6 @@ const mapStateToPageProps = state => ({
 const PageWithRedux = connect(mapStateToPageProps)(Page);
 const PageWithReduxWithRoute = withRouter(PageWithRedux);
 
-export default PageWithReduxWithRoute;
+const PageWithReduxWithRouteWithGa = GaSubmit(PageWithReduxWithRoute);
+
+export default PageWithReduxWithRouteWithGa;

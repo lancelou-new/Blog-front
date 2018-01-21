@@ -19,8 +19,7 @@
 const proxyRequest = require('request');
 const path = require('path');
 const fs = require('fs');
-const cookieParser = require('cookie-parser');
-const config = require('./config');
+const config = require('./configVo');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -51,8 +50,8 @@ const setCsrfCookie = (req, res, uniq, num) =>
   res.cookie('comment_csrf', `${Math.round(Math.random() * 10000)}${uniq}${req.ip}-${num}`, { signed: true });
 
 const verifyCommentCsrfCookie = (req, res, reqBody) => {
-  const cookies = cookieParser(req.signedCookies, config.cookieSecret);
-  const commentCsrf = cookies.comment_csrf;
+  const signedCookies = req.signedCookies;
+  const commentCsrf = signedCookies.comment_csrf;
 
   if (!commentCsrf || commentCsrf !== reqBody.commentCsrf || commentCsrf.slice(commentCsrf.lastIndexOf('-')) > 50) {
     return false;
@@ -82,15 +81,6 @@ const approvePost = postId => new Promise((resolve, reject) => {
 disqusProyMiddleware.comments = (req, res) => {
   // 获取对应文章所有的comments
   const queryParams = req.query;
-
-  console.log({
-    base: 'default',
-    s_o: 's_o',
-    f: config.commentName,
-    t_u: queryParams.postUrl,
-    t_d: queryParams.title,
-    t_t: queryParams.title,
-  });
 
   const options = {
     uri: 'https://disqus.com/embed/comments/',

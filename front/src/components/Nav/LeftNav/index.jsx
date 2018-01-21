@@ -34,7 +34,7 @@ const LeftNav = (props) => {
   });
   return (
     <nav className={Style.left_navContainer}>
-      <Helmet>
+      <Helmet defer={false}>
         <meta name="charset" content="UTF-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <meta name="keywords" content={options.keywords} />

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Helmet } from 'react-helmet';
+import GaSubmit from '../GaSubmit';
 import EventEmit from '../../utils/eventCenter';
 import Style from './index.scss';
 import PreLoadLinkWithRouteConf from '../PreloadLink/preLoadLinkWithRouteConf';
@@ -38,7 +39,7 @@ class Achieve extends React.Component {
     });
     return (
       <article className={className}>
-        <Helmet>
+        <Helmet defer={false}>
           <title>归档 - {siteTitle}</title>
         </Helmet>
         <h1 className="title">归档</h1>
@@ -91,4 +92,6 @@ const mapStateToAchieveProps = state => ({
 
 const AchieveWithRedux = connect(mapStateToAchieveProps, null)(Achieve);
 
-export default AchieveWithRedux;
+const AchieveWithGa = GaSubmit(AchieveWithRedux);
+
+export default AchieveWithGa;
