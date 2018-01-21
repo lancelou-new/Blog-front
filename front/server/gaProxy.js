@@ -57,7 +57,7 @@ const sendToGA = (req, cId) => {
   const options = {
     method: 'POST',
     uri: 'https://www.google-analytics.com/collect',
-    body: Object.assign({}, queryParams, body),
+    qs: Object.assign({}, queryParams, body),
     headers: {
       'User-Agent': userAgent,
     },
