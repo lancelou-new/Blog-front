@@ -40,6 +40,7 @@ const { gaTrackId } = require('./configVo');
 
 const cookieMaxAge = 1000 * 60 * 60 * 24 * 365 * 2;
 const log = log4js.getLogger('ssrServer');
+const isProd = process.env.NODE_ENV === 'production';
 
 /**
  * 通知Google Analytics
@@ -63,9 +64,13 @@ const sendToGA = (req, cId) => {
     },
     json: true
   };
-  proxyRequest(options, (error) => {
-    log.error('Google Analytics proxy error: ', error);
-  });
+  if (isProd) {
+    proxyRequest(options, (error) => {
+      log.error('Google Analytics proxy error: ', error);
+    });
+  } else {
+    log.info('Proxy to GA trigger ......');
+  }
 };
 
 const gaProxyMiddleWare = (req, res) => {

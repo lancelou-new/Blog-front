@@ -61,7 +61,7 @@ const inline = isProd ? fs.readFileSync(resolve('./dist/styles.css'), 'utf-8') :
 let log = null;
 
 // dist中的打包输出文件使用内存缓存
-const chunkObj = {};
+let chunkObj = {};
 if (isProd) {
   log = log4js.getLogger('ssrServer');
   const fileArr = fs.readdirSync(resolve('./dist'));
@@ -153,7 +153,8 @@ config.flushOption().then(() => {
         ssrRenderMiddleware = (requireFromFileString(serverBundleStr, outputPath)).default;
       },
       chunkObjUpdate: (newChunkObj) => {
-        Object.assign(chunkObj, newChunkObj);
+        // Object.assign(chunkObj, newChunkObj); memory leak
+        chunkObj = newChunkObj;
       }
     }); // 连接上webpack Hot Middleware， 进行打包及相关的热更新服务
   }
