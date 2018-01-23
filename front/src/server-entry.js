@@ -138,8 +138,13 @@ const serverEntryMiddlewareCreator = ({
       if (preLoadComponent) {
         for (const key in chunkObj) {
           if (key.split('.')[0] === preLoadComponent.chunkName) {
-            const chunkContent = chunkObj[key].replace('sourceMappingURL=', `sourceMappingURL=${devOutputPath}`);
-            const chunk = `<script type="text/javascript" charset="utf-8">${chunkContent}</script></body>`;
+            let chunk = null;
+            if (isProd) {
+              chunk = `<script type="text/javascript" charset="utf-8">${chunkObj[key]}</script></body>`;
+            } else {
+              // dev mode: single file script: for source map
+              chunk = `<script type="text/javascript" charset="utf-8" src="${devOutputPath}${key}"></script></body>`;
+            }
             tail = tail.replace('</body>', chunk);
             break;
           }
