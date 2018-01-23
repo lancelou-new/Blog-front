@@ -45,6 +45,13 @@ if (process.env.NODE_ENV === 'production') {
     allChunks: true,
   }));
 
+  // async chunk common extract
+  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+    name: 'app',
+    async: 'async-common',
+    minChunks: 3,
+  }));
+
   // minify JS
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: {
