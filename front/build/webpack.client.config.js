@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
   Array.prototype.push.apply(config.module.rules, baseCssExtConf(true));
 
   config.plugins.push(new ExtractTextPlugin({
-    filename: 'styles.css',
+    filename: 'styles.[contenthash].css',
     allChunks: true,
   }));
 

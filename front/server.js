@@ -55,9 +55,6 @@ const { api: rssApi, params: rssParams, getRssBodyFromBody } = require('./server
 
 const resolve = file => path.resolve(__dirname, file);
 
-// inline css cache in memory
-const inline = isProd ? fs.readFileSync(resolve('./dist/styles.css'), 'utf-8') : '';
-
 let log = null;
 
 // dist中的打包输出文件使用内存缓存
@@ -87,9 +84,8 @@ if (isProd) {
 
 function flushHtml(template) {
   // 生产环境下，内部样式直接注入
-  const style = isProd ? `<style type="text/css">${inline}</style>` : '';
   return {
-    head: template.match(/([\w\W]*<div id="root">)[\w\W]*/)[1].replace('<link href="/dist/styles.css" rel="stylesheet">', style),
+    head: template.match(/([\w\W]*<div id="root">)[\w\W]*/)[1],
     tail: template.match(/[\w\W]*<div id="root">([\w\W]*)/)[1],
     root: '<div id="root">此处做root的划分吧，不然所有添加的都会被react Dom清掉</div>',
     origin: template,
