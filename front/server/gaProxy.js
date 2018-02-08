@@ -2,6 +2,7 @@
  * Google Analytics代理
  *
  * 暂定代理数据:
+ *  直接把源头(header)拷为当前的头(header)
  *  bed:
  *    跟踪ID: 见config tid
  *    协议版本: v: 1
@@ -48,7 +49,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const sendToGA = (req, cId) => {
   const queryParams = req.query;
   const clientIp = req.ip;
-  const userAgent = req.get('user-agent');
+  const header = JSON.stringify(req.headers);
   const body = {
     tid: gaTrackId,
     v: 1,
@@ -59,9 +60,7 @@ const sendToGA = (req, cId) => {
     method: 'POST',
     uri: 'https://www.google-analytics.com/collect',
     qs: Object.assign({}, queryParams, body),
-    headers: {
-      'User-Agent': userAgent,
-    },
+    headers: header,
     json: true
   };
   if (isProd) {

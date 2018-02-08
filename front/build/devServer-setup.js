@@ -32,15 +32,13 @@ const config = require('../config');
 // set name parameters to make sure bundles don't process each other's updates
 clientWebpackConfig.entry = ['react-hot-loader/patch', 'webpack-hot-middleware/client?name=app', clientWebpackConfig.entry.app];
 
-// clientWebpackConfig.output.filename = '[name].js'; // 删除文件不加hash，确定文件名
-
 clientWebpackConfig.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
 );
 
 const getChunkObjFromMfs = (MFs) => {
-  console.log('fun mark(getChunkObjFromMfs) --->>> start');
   const chunkObj = {};
   const assetsRoot = clientWebpackConfig.output.path;
   const fileArr = MFs.readdirSync(assetsRoot);
@@ -49,11 +47,9 @@ const getChunkObjFromMfs = (MFs) => {
     const arr = fileName.split('.');
     if (arr.length === 3 && arr[0] !== 'main') {
       const input = MFs.readFileSync(path.join(assetsRoot, `${fileName}`), 'utf-8');
-      console.log('getChunkObjFromMfs function: get filename: ', fileName, '\n length: ', input.length);
       chunkObj[fileName] = input;
     }
   }
-  console.log('fun mark(getChunkObjFromMfs) --->>> end');
   return chunkObj;
 };
 
