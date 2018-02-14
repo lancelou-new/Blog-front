@@ -41,8 +41,15 @@ if (process.env.NODE_ENV === 'production') {
   Array.prototype.push.apply(config.module.rules, baseCssExtConf(true));
 
   config.plugins.push(new ExtractTextPlugin({
-    filename: 'styles.css',
+    filename: 'styles.[contenthash].css',
     allChunks: true,
+  }));
+
+  // async chunk common extract
+  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+    name: 'app',
+    async: 'async-common',
+    minChunks: 3,
   }));
 
   // minify JS

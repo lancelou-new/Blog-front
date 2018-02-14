@@ -1,4 +1,5 @@
-/* eslint react/jsx-filename-extension: 0 */
+/* eslint react/jsx-filename-extension: 0, guard-for-in: 0 */
+
 /**
  * 服务端渲染入口文件:
  * 仿照Vue ssr: 我们将会在这个文件中导出最终需要打包输出的文件
@@ -36,6 +37,7 @@ import { mustSSRLoad, routerConfig } from './routes/index';
 import generateParams from './action/requestParamsFactory';
 
 const devOutputPath = '/dist/';
+const asyncCommonChunks = ['async-common'];
 let headInfoMCache = {};
 
 const createStoreAndLoadData = (req, store) => {
@@ -70,6 +72,11 @@ const generateCdnLibScriptTag = () => {
   return cdnLibs.join('');
 };
 
+/**
+ * generate ssr header and cache it
+ * @param {*} store readux store
+ * @param {*} serverRouteConf server router conf
+ */
 const generateHelmet = (store, serverRouteConf) => {
   const { url } = serverRouteConf;
   const curTime = new Date().getTime();
@@ -88,15 +95,46 @@ const generateHelmet = (store, serverRouteConf) => {
 };
 
 /**
- * 服务端入口工厂 -> 传入运行时配置参数，生成这个渲染中间件
- * @param {*} options 配置对象
+ * Generate a async chunk script tag string
+ * @param {*} content The async chunk file content
+ * @param {*} filename The async chunk file name
+ * @param {*} isProd Flag: is prod
+ */
+const generateChunkScript = (content, filename, isProd) => {
+  if (isProd) {
+    return `<script type="text/javascript" charset="utf-8">${content}</script></body>`;
+  }
+  // dev mode: single file script: for source map
+  return `<script type="text/javascript" charset="utf-8" src="${devOutputPath}${filename}"></script></body>`;
+};
+
+/**
+ * Generate ssr async chunk script tag string
+ * @param {*} isProd Flag: is prod
+ * @param {*} chunkObj file content map
+ * @param {*} preLoadComponent need preload component from route conf
+ */
+const generateSsrPreloadChunk = (isProd, chunkObj, preLoadComponent) => {
+  let chunkScripStr = '';
+  for (const key in chunkObj) {
+    const prefix = key.split('.')[0];
+    if (prefix === preLoadComponent.chunkName
+      || asyncCommonChunks.indexOf(prefix) >= 0) {
+      chunkScripStr += generateChunkScript(chunkObj[key], key, isProd);
+    }
+  }
+  return `${chunkScripStr}</body>`;
+};
+
+/**
+ * Server entry middleware factory: config in, gegerate render middleware
+ * @param {*} options config object
  */
 const serverEntryMiddlewareCreator = ({
   html, log, isProd, chunkObj
 }) => (req, res, next) => {
   const store = configureStore();
   createStoreAndLoadData(req, store).then((preLoadComponent) => {
-
     const serverRouteConf = {
       url: req.url
     };
@@ -133,17 +171,9 @@ const serverEntryMiddlewareCreator = ({
       let tail = html.tail;
       tail = tail.replace('</div>', libAndState);
 
-      // 这边如果也要做到dev模式下的component preload，我们还是需要
-      // 从MFS中取那些chunk
       if (preLoadComponent) {
-        for (const key in chunkObj) {
-          if (key.split('.')[0] === preLoadComponent.chunkName) {
-            const chunkContent = chunkObj[key].replace('sourceMappingURL=', `sourceMappingURL=${devOutputPath}`);
-            const chunk = `<script type="text/javascript" charset="utf-8">${chunkContent}</script></body>`;
-            tail = tail.replace('</body>', chunk);
-            break;
-          }
-        }
+        const chunk = generateSsrPreloadChunk(isProd, chunkObj, preLoadComponent);
+        tail = tail.replace('</body>', chunk);
       }
       res.end(tail);
     });

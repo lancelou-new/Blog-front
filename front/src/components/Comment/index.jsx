@@ -23,7 +23,7 @@ class Comment extends React.Component {
   constructor(props) {
     super(props);
 
-    // 客服端标记初始化为false
+    // isClient: init with server
     this.state = {
       isSupportDisqus: IsSupportDisqus,
       isClient: IsClient,
@@ -33,9 +33,8 @@ class Comment extends React.Component {
   componentDidMount() {
     const d = document;
     const scriptTag = d.createElement('script');
-    const image = new window.Image();
     let timer = null;
-    scriptTag.src = 'https://lanceloublog.disqus.com/embed.js';
+    scriptTag.src = `https://lanceloublog.disqus.com/embed.js?t=${new Date().getTime()}`;
     scriptTag.async = 'async';
 
     if (IsClient || window.disqus_config) {
@@ -51,18 +50,17 @@ class Comment extends React.Component {
     });
 
     window.disqus_config = () => {
-      this.page.url = window.location.href;
+      this.page.url = `${window.location.origin}${window.location.pathname}`;
       this.page.identifier = window.location.href;
     };
 
-    image.onload = () => {
+    scriptTag.onload = () => {
       if (!timer) { return; }
 
       clearTimeout(timer);
       timer = null;
-      d.body.appendChild(scriptTag);
     };
-    image.onerror = () => {
+    scriptTag.onerror = () => {
       if (!timer) { return; }
 
       clearTimeout(timer);
@@ -82,10 +80,9 @@ class Comment extends React.Component {
         isSupportDisqus: false,
       });
       IsSupportDisqus = false;
-      image.src = '/';
     }, 3000);
 
-    image.src = `https://disqus.com/favicon.ico?${new Date().getTime()}`;
+    d.body.appendChild(scriptTag);
   }
 
   componentDidUpdate(prevProps) {

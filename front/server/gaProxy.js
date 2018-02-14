@@ -2,6 +2,7 @@
  * Google Analytics代理
  *
  * 暂定代理数据:
+ *  直接把源头(header)拷为当前的头(header)
  *  bed:
  *    跟踪ID: 见config tid
  *    协议版本: v: 1
@@ -40,6 +41,7 @@ const { gaTrackId } = require('./configVo');
 
 const cookieMaxAge = 1000 * 60 * 60 * 24 * 365 * 2;
 const log = log4js.getLogger('ssrServer');
+const isProd = process.env.NODE_ENV === 'production';
 
 /**
  * 通知Google Analytics
@@ -47,7 +49,7 @@ const log = log4js.getLogger('ssrServer');
 const sendToGA = (req, cId) => {
   const queryParams = req.query;
   const clientIp = req.ip;
-  const userAgent = req.get('user-agent');
+  const header = JSON.stringify(req.headers);
   const body = {
     tid: gaTrackId,
     v: 1,
@@ -58,14 +60,16 @@ const sendToGA = (req, cId) => {
     method: 'POST',
     uri: 'https://www.google-analytics.com/collect',
     qs: Object.assign({}, queryParams, body),
-    headers: {
-      'User-Agent': userAgent,
-    },
+    headers: header,
     json: true
   };
-  proxyRequest(options, (error) => {
-    log.error('Google Analytics proxy error: ', error);
-  });
+  if (isProd) {
+    proxyRequest(options, (error) => {
+      log.error('Google Analytics proxy error: ', error);
+    });
+  } else {
+    log.info('Proxy to GA trigger ......');
+  }
 };
 
 const gaProxyMiddleWare = (req, res) => {

@@ -2,7 +2,7 @@
  * 开发环境下express服务器 webpack 打包辅助配置文件:
  *  主要做webpack的打包构建以及与express进行配合来HMR
  *
- * 此处其实我们需要启动两个打包服务，一个是服务端打包，一个是客服端打包
+ * 此处其实我们需要启动两个打包服务，一个是服务端打包，一个是客户端打包
  *
  *
  * 现在，我们来回答为毛我们需要有服务端工程化 以及 客服端工程化两个入口文件:
@@ -32,10 +32,9 @@ const config = require('../config');
 // set name parameters to make sure bundles don't process each other's updates
 clientWebpackConfig.entry = ['react-hot-loader/patch', 'webpack-hot-middleware/client?name=app', clientWebpackConfig.entry.app];
 
-// clientWebpackConfig.output.filename = '[name].js'; // 删除文件不加hash，确定文件名
-
 clientWebpackConfig.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
 );
 
@@ -46,7 +45,7 @@ const getChunkObjFromMfs = (MFs) => {
   for (let i = 0, len = fileArr.length; i < len; i += 1) {
     const fileName = fileArr[i];
     const arr = fileName.split('.');
-    if (arr.length === 3 && arr[0] !== 'app') {
+    if (arr.length === 3 && arr[0] !== 'main') {
       const input = MFs.readFileSync(path.join(assetsRoot, `${fileName}`), 'utf-8');
       chunkObj[fileName] = input;
     }

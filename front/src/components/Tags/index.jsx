@@ -22,9 +22,11 @@ const Tag = (props) => {
       <div className="entry-content">
         <section>
           {anchors.map(anchor =>
-            (<PreLoadLinkWithRouteConf to={anchor.to} key={anchor.to}>
-              {anchor.name}({anchor.num})
-             </PreLoadLinkWithRouteConf>))
+            (
+              <PreLoadLinkWithRouteConf to={anchor.to} key={anchor.to}>
+                {anchor.name}({anchor.num})
+              </PreLoadLinkWithRouteConf>
+            ))
           }
         </section>
       </div>

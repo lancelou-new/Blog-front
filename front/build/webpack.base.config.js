@@ -21,8 +21,8 @@ const baseConfig = {
   output: {
     path: config.build.assetsRoot,
     publicPath: isProd ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
-    chunkFilename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
+    filename: isProd ? '[name].[chunkhash].js' : '[name].bundle.js',
+    chunkFilename: isProd ? '[name].[chunkhash].js' : '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.scss', '.css'],
