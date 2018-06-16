@@ -10,7 +10,7 @@
     "build:client": "node build/build-client.js",
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules",
     "bundleSize-view": "node build/build-client.js --bundleAna",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Without test\""
   },
   "repository": {
     "type": "git",
