@@ -36,6 +36,9 @@ jobs:
       # run tests!
       - run: yarn test
   deploy:
+    machine:
+       enabled: true
+
     docker:
       # specify the version you desire here
       - image: circleci/node:8.9.4
