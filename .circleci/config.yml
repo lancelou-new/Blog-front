@@ -44,7 +44,9 @@ jobs:
   deploy:
     machine:
       enabled: true
+    working_directory: ~/blog-front
     steps:
+      - checkout
       - run: ./deploy.sh
 
 workflows:
