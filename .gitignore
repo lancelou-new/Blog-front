@@ -63,5 +63,3 @@ dist/
 schedule.md
 front/server/configVo.js
 front/server/config/db.config.js
-
-yarn.lock

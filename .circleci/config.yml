@@ -35,20 +35,19 @@ jobs:
         
       # run tests!
       - run: yarn test
-
-      # run build!
-      - run: yarn build
-
-      - run: ls ~/blog-front
-
   deploy:
     machine:
       enabled: true
     working_directory: ~/blog-front
     steps:
       - checkout
-      - run: ./deploy.sh
 
+      - run: yarn install
+
+      # run build!
+      - run: yarn build
+
+      - run: ./deploy.sh
 workflows:
   version: 2
   build-and-deploy:
