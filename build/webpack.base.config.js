@@ -36,6 +36,7 @@ const baseConfig = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
+      query: { presets: ['es2015', 'stage-0', 'stage-1', 'react'] },
     },
     {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
