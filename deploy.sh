@@ -9,4 +9,4 @@ cp ~/index.js ../deploy
 cp ~/server.js ../deploy
 cp ~/pm2.json ../deploy
 
-scp ~/deploy root@45.76.111.33:/home/lancelou/www/lanceblog
+scp -r ~/deploy root@45.76.111.33:/home/lancelou/www/lanceblog
