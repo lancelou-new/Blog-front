@@ -1,7 +1,7 @@
 {
   "apps": [{
     "name": "blogfrontend",
-    "script": "front/production.js",
+    "script": "front/index.js",
     "cwd": "front/",
     "exec_mode": "cluster",
     "instances": 0,

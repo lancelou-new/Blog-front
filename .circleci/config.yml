@@ -46,8 +46,7 @@ jobs:
     steps:
       - run:
         name: Deploy Over SSH
-        command: |
-          ssh root@45.76.111.33 "ls"
+        command: ./deploy.sh
 
 workflows:
   version: 2
