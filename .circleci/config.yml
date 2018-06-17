@@ -35,3 +35,22 @@ jobs:
         
       # run tests!
       - run: yarn test
+
+      # run build!
+      - run: yarn build
+
+      - run: ls ~/blog-front
+  deploy:
+    machine:
+      enabled: true
+    requires:
+      - build
+    filters:
+      branches:
+        only: master
+    steps:
+      - run:
+        name: Deploy Over SSH
+        command: |
+          ssh root@45.76.111.33 ""
+

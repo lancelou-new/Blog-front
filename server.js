@@ -1,35 +1,4 @@
 /* eslint global-require: 0, consistent-return: 0 */
-/**
- * SSR server. express
- * 整个中间层node服务的入口
- *
- * -> 相关的SEO，sitemap，robots
- * -> 模板相关处理: 字符串替换(处理行内样式，性能提升) -> ReactDOMServer(renderToString)
- * -> 静态文件服务    我们在这里使用rendToString来对renct的打包文件进行处理
- *
- * 客服端 & 服务端协商问题:
- * ------------------- above: 基础功能实现
- *
- * -> GoogleAnalytic服务端转发
- *
- * 客服端路由的话: 所有展示出来的链接我们认为都是可达的，即如果是客服端路由，通过router配置，我们可以直接跳到index页面，
- * 从而404的逻辑，我们放在服务端来进行触发
- * -> 有路由逻辑时，我们总路由逻辑的404
- * -> 基于路由逻辑下的诸如post的 option 的状态，我们同样进行404的组件挂载
- *
- * 前端接口错误导向统一的500组件。和404组件生成于同一个generator
- *
- * 转发与跨域问题:
- *  这也是nginx的配置文件所正要做的:
- *    基于location长匹配优先原则: 对于API接口前缀，导入接口服务器
- *    对于静态资源请求，进行缓存服务
- *    对于其他，接入SSR
- *
- * 明确几点，使用http thunked技术
- *
- * 当前这个文件是否需要打包？不打包如何将express与react连接起来
- * https://smallpath.me/post/vue2-ssr-on-demand-code-splitting-opti
- */
 
 const isProd = process.env.NODE_ENV === 'production';
 const config = require('./server/configVo');
@@ -74,13 +43,6 @@ if (isProd) {
   log = log4js.getLogger('ssrServer');
   log.level = 'debug';
 }
-
-
-/**
- * 区分开发和生产环境的主要目的在于:
- *  开发环境下需要连接webpack打包服务(文件改变进行刷新)，无需行内样式，无需内存存储资源，
- *  而对于生产环境，对比如上所述，我们无需进行相关处理
- */
 
 function flushHtml(template) {
   // 生产环境下，内部样式直接注入
