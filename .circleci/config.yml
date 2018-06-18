@@ -35,20 +35,24 @@ jobs:
         
       # run tests!
       - run: yarn test
+
+      # run build!
+      - run: yarn build
+
+      - save_cache:
+          key: v1-bundle-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
   deploy:
     machine:
-       enabled: true
-       image: circleci/node:8.9.4
-
+        enabled: true
     working_directory: ~/blog-front
 
     steps:
       - checkout
 
-      - run: yarn install
-
-      # run build!
-      - run: yarn build
+      - restore_cache:
+          key: v1-bundle-{{ .Environment.CIRCLE_SHA1 }}
 
       - run: ./deploy.sh
 workflows:
