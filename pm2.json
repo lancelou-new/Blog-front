@@ -1,8 +1,7 @@
 {
   "apps": [{
     "name": "blogfrontend",
-    "script": "front/index.js",
-    "cwd": "front/",
+    "script": "./index.js",
     "exec_mode": "cluster",
     "instances": 0,
     "max_memory_restart": "256M",
