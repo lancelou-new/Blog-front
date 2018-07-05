@@ -11,6 +11,6 @@ cp ./server.js ../deploy
 cp ./pm2.json ../deploy
 cp ./package.json ../deploy
 
-scp -r ~/deploy root@45.76.111.33:/home/lancelou/www/lanceblog
+scp -r ~/deploy root@45.76.111.33:/home/bloger/blog-fed/deploy
 
-ssh root@45.76.111.33 "cd /home/lancelou/www/lanceblog/deploy && yarn install && pm2 start blogfrontend"
+# ssh root@45.76.111.33 "cd /home/bloger/blog-fed/deploy && yarn install && pm2 start blogfrontend"
