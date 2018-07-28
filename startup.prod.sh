@@ -7,5 +7,9 @@ export HOME=/home/bloger
 
 nvm use v8.9.4
 cd /home/bloger/blog-fed/deploy
+
+cp ../confs/db.config.js server/config
+cp ../confs/configVo.js server
+
 yarn install
 pm2 start pm2.json

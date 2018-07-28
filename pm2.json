@@ -2,8 +2,8 @@
   "apps": [{
     "name": "blogfrontend",
     "script": "./index.js",
-    "exec_mode": "cluster",
-    "instances": 0,
+    "exec_mode": "fork",
+    "instances": 1,
     "max_memory_restart": "256M",
     "autorestart": true,
     "node_args": [],
