@@ -14,4 +14,4 @@ cp ./startup.prod.sh ../deploy
 
 scp -r ~/deploy bloger@116.62.172.253:/home/bloger/blog-fed/
 
-ssh bloger@116.62.172.253 "cd /home/bloger/blog-fed/deploy && sh startup.prod.sh"
+ssh bloger@116.62.172.253 "cd /home/bloger/blog-fed/deploy && . startup.prod.sh"
