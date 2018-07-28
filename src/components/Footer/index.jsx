@@ -33,9 +33,12 @@ class Footer extends React.Component {
     return (
       <div className={Style.footer_copyright}>
         <p>
-          © {currentYear}&nbsp;&nbsp;-&nbsp;&nbsp;{title}&nbsp;&nbsp;-&nbsp;&nbsp;<a href="https://github.com/lancelou-new/Blog" target="__blank">博客源码</a>
+          © {currentYear}&nbsp;&nbsp;-&nbsp;&nbsp;{title}&nbsp;&nbsp;-&nbsp;&nbsp;
+          <a href="http://www.miitbeian.gov.cn/">浙ICP备18031863号</a>
         </p>
         <p>
+          <a href="https://github.com/lancelou-new/Blog" target="__blank">博客源码</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
           Powered by  <a href="https://github.com/facebook/react/releases" target="__blank">React16(SSR)</a>  &  <a href="https://github.com/koajs/koa" target="__blank">Koa2</a>
         </p>
       </div>

@@ -10,4 +10,8 @@
   p {
     margin: 12px 0;
   }
+
+  > p:first-child a {
+    color: #666;
+  }
 }
