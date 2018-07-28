@@ -13,4 +13,4 @@ cp ./package.json ../deploy
 
 scp -r ~/deploy bloger@116.62.172.253:/home/bloger/blog-fed/
 
-ssh bloger@116.62.172.253 ". /etc/profile; cd /home/bloger/blog-fed/deploy; yarn install; pm2 start blogfrontend"
+ssh bloger@116.62.172.253 "cd /home/bloger/blog-fed/deploy && sh startup.prod.sh"
