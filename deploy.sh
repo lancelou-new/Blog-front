@@ -10,6 +10,7 @@ cp ./index.js ../deploy
 cp ./server.js ../deploy
 cp ./pm2.json ../deploy
 cp ./package.json ../deploy
+cp ./startup.prod.sh ../startup.prod.sh
 
 scp -r ~/deploy bloger@116.62.172.253:/home/bloger/blog-fed/
 
