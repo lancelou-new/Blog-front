@@ -35,11 +35,7 @@ const LeftNav = (props) => {
   return (
     <nav className={Style.left_navContainer}>
       <Helmet defer={false}>
-        <meta name="charset" content="UTF-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <meta name="keywords" content={options.keywords} />
-        <meta name="description" content="Front-End/Node.js developer, lifer, maker" />
-        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
       </Helmet>
       <div className={Style.left_icon}>
         <a href="/" >
