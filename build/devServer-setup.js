@@ -74,7 +74,7 @@ module.exports = function devWebpackMiddleware(app, options) {
 
     if (wfs.existsSync(filepath)) {
       const html = wfs.readFileSync(filepath, 'utf-8');
-      options.indexHtmlUpdate(html);
+      options.indexHtmlUpdate(html.replace(/<meta .*"Content-Security-Policy".*>/, ''));
     }
     chunkObj = getChunkObjFromMfs(wfs);
     options.chunkObjUpdate(chunkObj);

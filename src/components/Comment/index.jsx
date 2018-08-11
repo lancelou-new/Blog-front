@@ -36,7 +36,6 @@ class Comment extends React.Component {
     let timer = null;
     scriptTag.src = `https://lanceloublog.disqus.com/embed.js?t=${new Date().getTime()}`;
     scriptTag.async = 'async';
-
     if (IsClient || window.disqus_config) {
       // route change trigger(component unmount mount)
       this.state.isSupportDisqus && this.resetDisqus();
@@ -49,11 +48,11 @@ class Comment extends React.Component {
       isClient: true,
     });
 
-    window.disqus_config = () => {
+    window.disqus_config = function() {
       this.page = this.page || {};
       this.page.url = `${window.location.origin}${window.location.pathname}`;
       this.page.identifier = window.location.href;
-    };
+    }
 
     scriptTag.onload = () => {
       if (!timer) { return; }
