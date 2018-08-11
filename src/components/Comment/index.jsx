@@ -34,7 +34,8 @@ class Comment extends React.Component {
     const d = document;
     const scriptTag = d.createElement('script');
     let timer = null;
-    scriptTag.src = `https://lanceloublog.disqus.com/embed.js?t=${new Date().getTime()}`;
+    scriptTag.src = 'https://lanceloublog.disqus.com/embed.js';
+    scriptTag.setAttribute('data-timestamp', +new Date());
     scriptTag.async = 'async';
     if (IsClient || window.disqus_config) {
       // route change trigger(component unmount mount)
