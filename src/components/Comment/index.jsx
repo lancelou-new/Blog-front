@@ -50,6 +50,7 @@ class Comment extends React.Component {
     });
 
     window.disqus_config = () => {
+      this.page = this.page || {};
       this.page.url = `${window.location.origin}${window.location.pathname}`;
       this.page.identifier = window.location.href;
     };
