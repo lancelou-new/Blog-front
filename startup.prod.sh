@@ -6,6 +6,8 @@ export HOME=/home/bloger
 . $HOME/.nvm/nvm.sh
 
 nvm use v8.9.4
+
+rm -rf /home/bloger/blog-fed/deploy/*
 cd /home/bloger/blog-fed/deploy
 
 cp ../confs/db.config.js server/config
