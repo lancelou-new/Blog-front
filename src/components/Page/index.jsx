@@ -41,7 +41,7 @@ class Page extends React.Component {
       url: window && window.location.href,
       title: window && window.document.href,
     };
-    const content = match.path === '/post/:postName' ? blog : page;
+    const content = match.url.indexOf('/post') >= 0 ? blog : page;
     const is404 = Object.keys(content).length === 0;
     return is404 ? <Page404 /> :
     <div>

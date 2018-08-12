@@ -5,12 +5,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import { fetchDateByTargetUrl } from '../../utils/routeDateFetch';
 import Style from './index.scss';
 
 class Footer extends React.Component {
   static propTypes = {
     options: PropTypes.shape({
-      title: PropTypes.string
+      title: PropTypes.string,
+      dispatch: PropTypes.func,
     })
   }
 
@@ -22,6 +25,12 @@ class Footer extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('popstate', () => {
+      if (document.location.hash) {
+        return;
+      }
+      fetchDateByTargetUrl(document.location.pathname, this.props.dispatch)();
+    });
     this.setState({
       currentYear: (new Date()).getFullYear(),
     });

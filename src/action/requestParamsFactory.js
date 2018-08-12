@@ -72,7 +72,7 @@ const generateFetchTagPageParams = ({ params }) => {
 const generateFetchBlogsParams = ({ params }) => ({
   model: 'post',
   query: {
-    conditions: { pathName: params.postName, isPublic: true, type: 'post' },
+    conditions: { pathName: params[0], isPublic: true, type: 'post' },
     select: {
       title: 1,
       createdAt: 1,
@@ -103,7 +103,7 @@ const PathToParamsGeneratorMap = {
   '/achieve': generateFetchAchieveParams,
   '/tag': generateFetchTagsParams,
   '/tag/:tagName/:page(\\d+)?': generateFetchTagPageParams,
-  '/post/:postName': generateFetchBlogsParams,
+  '/\\/post\\/([\\w-]*)$/': generateFetchBlogsParams,
   '/page=:page(\\d+)': generateFetchItemsParams,
   '/^\\/(?!(?:tag|achieve|page=[\\d]+)\\/?$)([\\w\\d-]+)\\/?$/': generateFetchPageParams,
 };

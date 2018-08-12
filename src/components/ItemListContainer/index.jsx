@@ -37,7 +37,7 @@ class ItemListContainer extends React.Component {
         <Helmet defer={false}>
           <title>首页 - {siteTitle}</title>
         </Helmet>
-        {itemList.map(itemVo => (
+        {itemList && itemList.map(itemVo => (
           <Item vo={itemVo} key={itemVo.createdAt} />
         ))}
         <Pagination pagination={withoutPagination ? {} : pagination} />

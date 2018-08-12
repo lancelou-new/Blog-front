@@ -23,7 +23,7 @@ const Pagination = (props) => {
 
   curPage -= 0;
   withPrev = curPage > 1;
-  withNext = Math.ceil(pagination.totals / pagination.pageSize) > curPage;
+  withNext = pagination && Math.ceil(pagination.totals / pagination.pageSize) > curPage;
   url = url.indexOf('page') < 0 ? (`${url}page=1`) : url;
   return (
     <nav className="page_pagination">

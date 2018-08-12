@@ -7,12 +7,11 @@
  * 2. 生成match对象，使用match来进行 "dispatch的包装"
  */
 import React from 'react';
-import { matchPath } from 'react-router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import PreloadLink from './index';
-import generateParams from '../../action/requestParamsFactory';
-import { routerConfig } from '../../routes';
+import { fetchDateByTargetUrl } from '../../utils/routeDateFetch';
 
 const PreLoadLinkWithRouteConf = (props) => {
   const preloadFuncs = [];
@@ -20,23 +19,7 @@ const PreLoadLinkWithRouteConf = (props) => {
     children, dispatch, isNeedPreComponent, replace, to
   } = props;
 
-  routerConfig.some((config) => {
-    const match = matchPath(to, config);
-    if (match) {
-      match.path = match.path.toString();
-      config.loadData && (preloadFuncs.push(config.loadData(generateParams(match))));
-      config.componentPromise && isNeedPreComponent && (preloadFuncs.push(config.componentPromise));
-      return true;
-    }
-    return false;
-  });
-  const dataLoader = () => {
-    if (preloadFuncs.length) {
-      return Promise.all(preloadFuncs.map((func, index) =>
-        (index === 0 ? dispatch(func) : func())));
-    }
-    return Promise.resolve();
-  };
+  const dataLoader = fetchDateByTargetUrl(to, dispatch, isNeedPreComponent);
 
   return (
     <PreloadLink onPreload={dataLoader} to={to} replace={replace}>
