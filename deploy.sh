@@ -1,6 +1,8 @@
 mkdir ~/deploy
 cd ~/blog-front
 
+ssh bloger@116.62.172.253 "rm -rf /home/bloger/blog-fed/deploy/*"
+
 cp -r ./dist ../deploy
 cp -r ./config ../deploy
 cp -r ./middleware ../deploy
