@@ -103,7 +103,7 @@ const PathToParamsGeneratorMap = {
   '/achieve': generateFetchAchieveParams,
   '/tag': generateFetchTagsParams,
   '/tag/:tagName/:page(\\d+)?': generateFetchTagPageParams,
-  '/\\/post\\/([\\w-]*)$/': generateFetchBlogsParams,
+  '/\\/post\\/([\\w-\\.]*)$/': generateFetchBlogsParams,
   '/page=:page(\\d+)': generateFetchItemsParams,
   '/^\\/(?!(?:tag|achieve|page=[\\d]+)\\/?$)([\\w\\d-]+)\\/?$/': generateFetchPageParams,
 };

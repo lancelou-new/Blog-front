@@ -30,7 +30,7 @@ const config = [
     componentPromise: () => import(/* webpackChunkName: "HeaderItemListContainer" */ '../components/HeaderItemListContainer')
   },
   {
-    path: /\/post\/([\w-]*)$/,
+    path: /\/post\/([\w-\.]*)$/,
     exact: true,
     component: Page,
     loadData: action.fetchBlogs,
