@@ -51,11 +51,8 @@ class Comment extends React.Component {
 
     window.disqus_config = function() {
       this.page = this.page || {};
-      // this.page.url = `${window.location.origin}${window.location.pathname}`;
-      // this.page.identifier = window.location.href;
-
-      this.page.url = 'https://lancelou.com/post/middleware-in-redux-basic';
-      this.page.identifier = 'https://lancelou.com/post/middleware-in-redux-basic';
+      this.page.url = `${window.location.origin}${window.location.pathname}`;
+      this.page.identifier = window.location.href;
     }
 
     scriptTag.onload = () => {
