@@ -131,6 +131,9 @@ const Action = {
         return Promise.resolve();
       }
 
+      blog.content = blog.content.replace(/<script/g, "<p style='display: none' name='-no-EK1Pk8WI6bcMeanh-change-'")
+        .replace(/<\/script>/g, "-no-EK1Pk8WI6bcMeanh-change--</p>");
+
       dispatch({
         type: 'BLOG_GET_SUCCESS',
         data: blog,

@@ -84,13 +84,15 @@ class Comment extends React.Component {
         isSupportDisqus: false,
       });
       IsSupportDisqus = false;
-    }, 3000);
+    }, 4000);
 
-    d.body.appendChild(scriptTag);
+    setTimeout(() => {
+      d.body.appendChild(scriptTag);
+    }, 1000);
   }
-  shouldComponentUpdate(nextProps) { // refuse update when cur page anchor
+  shouldComponentUpdate(nextProps, nextState) { // refuse update when cur page anchor
     const curProps = this.props;
-    return nextProps.url.replace(/#.*/, '') !== curProps.url.replace(/#.*/, '');
+    return nextProps.url.replace(/#.*/, '') !== curProps.url.replace(/#.*/, '') || JSON.stringify(this.state) !== JSON.stringify(nextState);
   }
   componentDidUpdate(prevProps) {
     // route change but component not change and props change(need to reset)
