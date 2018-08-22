@@ -31,9 +31,11 @@ class CustomComment extends React.Component {
     isMobile && (MAX_COMMENT_DEPTH = 2);
   }
 
-  componentWillMount() {
-    // 初始化
-    this.fetchAllComment(this.props);
+  componentDidMount() {
+    // request proxy comment when needed
+    if (!this.props.isSupportDisqus) {
+      this.fetchAllComment(this.props);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
