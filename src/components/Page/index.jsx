@@ -39,7 +39,7 @@ class Page extends React.Component {
     const commentConfig = {
       identifier: window && window.location.href,
       url: window && window.location.href,
-      title: window && window.document.href,
+      title: window && window.document.title,
     };
     const content = match.url.indexOf('/post') >= 0 ? blog : page;
     const is404 = Object.keys(content).length === 0;

@@ -70,7 +70,7 @@ class CustomComment extends React.Component {
 
   fetchAllComment = (props) => {
     const params = {
-      postUrl: props.url,
+      url: props.url,
       title: props.title,
     };
     // const params = {
