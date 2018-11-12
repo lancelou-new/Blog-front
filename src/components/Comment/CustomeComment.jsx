@@ -77,7 +77,7 @@ class CustomComment extends React.Component {
     //   postUrl: 'https://www.lancelou.com/2017/04/25/react-redux-lession-series/',
     //   title: '"跟着Dan Abramov一起学Redux系列 - 娄聪的博客 | Lance Blog"',
     // };
-    axios.get('/disqus/comments.json', { params }).then(this.onInitDataReady).catch((err) => {
+    axios.get('/disqus/commentList.json', { params }).then(this.onInitDataReady).catch((err) => {
       console.error(err);
     });
   }
@@ -86,7 +86,7 @@ class CustomComment extends React.Component {
     const postBody = Object.assign({}, {
       thread: this.state.thread.id,
     }, data);
-    return axios.post('/disqus/post.json', postBody).then((res) => {
+    return axios.post('/disqus/comment.json', postBody).then((res) => {
       const postRes = res.data;
       const posts = this.state.posts;
       const originalPost = this.originalPost;
