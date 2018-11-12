@@ -9,6 +9,7 @@ import device from '../../utils/device';
 
 let isMobile = null; // 移动端需动态修改
 let MAX_COMMENT_DEPTH = 4;
+let isSupportDisqus = true;
 
 class CustomComment extends React.Component {
   static propTypes = {
@@ -34,11 +35,16 @@ class CustomComment extends React.Component {
   componentDidMount() {
     // request proxy comment when needed
     if (!this.props.isSupportDisqus) {
+      isSupportDisqus = false;
       this.fetchAllComment(this.props);
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    if (isSupportDisqus && !nextProps.isSupportDisqus) {
+      isSupportDisqus = nextProps.isSupportDisqus;
+      this.fetchAllComment(nextProps);
+    }
     if (nextProps.url !== this.props.url) {
       this.fetchAllComment(nextProps);
     }
